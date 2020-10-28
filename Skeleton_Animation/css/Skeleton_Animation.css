@@ -8,4 +8,25 @@
     CSS 속성 선언순서 : display, position(top, right, bottom, left, z-index), float/clear, overflow, width/height, margin/padding(top, right, bottom, left),
     border(top, right, bottom, left), background(image,position,repeat,color), border-radius, box-shadow,
     font(font-weight, font-style, font-variant, font-size/line-height, font-family), opacity, cursor, box-sizing, etc
-/*-------------------------------------------------------------
+-------------------------------------------------------------*/
+
+.skeleton-ui__animation01
+{
+    background: linear-gradient(to right, #e6e6e6, #c5c5c5, #e6e6e6);    
+    animation: gradient 3s ease infinite;
+    background-size: 400% 100%;
+}
+
+.skeleton-ui__animation02
+{
+    background: linear-gradient(-45deg, #ff7878, #76a6ff, #94ff8a);    
+    animation: gradient 15s ease infinite;
+    background-size: 1000% 1000%;
+}
+
+@keyframes gradient 
+{
+    0% {background-position: 0% 0%;}
+    50% {background-position: 100% 0%;}
+    100% {background-position: 0% 0%;}
+}
