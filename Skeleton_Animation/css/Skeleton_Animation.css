@@ -10,17 +10,19 @@
     font(font-weight, font-style, font-variant, font-size/line-height, font-family), opacity, cursor, box-sizing, etc
 -------------------------------------------------------------*/
 
-.skeleton-ui__animation01
+.skeleton-ui_animation01
 {
     background: linear-gradient(to right, #e6e6e6, #c5c5c5, #e6e6e6);    
     animation: gradient 3s ease infinite;
     background-size: 400% 100%;
 }
 
-.skeleton-ui__animation02
+.skeleton-ui_animation02
 {
     background: linear-gradient(-45deg, #ff7878, #76a6ff, #94ff8a);    
-    animation: gradient 15s ease infinite;
+    animation-name: gradient;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
     background-size: 1000% 1000%;
 }
 

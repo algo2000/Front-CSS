@@ -4,22 +4,44 @@
         <title>Skeleton Animation</title>
         <link rel="stylesheet" type="text/css" href="/css/Skeleton_Animation.css" />
         <style>
-            .box01
+            .box_big
             {
-                height: 70px;
+                height: 500px;
                 width: 100%;
-                border-radius: 20px;
+                border-radius: 10px;
                 margin: 10px 0px;
             }
-            .box02
+            .box_thin_long
             {
-                height: 30px;
-                width: 100px;
+                height: 6px;
+                width: 100%;
                 border-radius: 20px;
-                margin-inline-end: 10px;                
-                display: inline-block;
+                margin-inline-end: 10px;
+                margin: auto 0;
+                display: block;
+                margin-bottom: 5px;
             }
-            .box03
+            .box_thin_long_far-obj
+            {
+                height: 6px;
+                width: 100%;
+                border-radius: 20px;
+                margin-inline-end: 10px;
+                margin: auto 0;
+                display: block;
+                margin-bottom: 20px;
+            }
+            .box_thin_short
+            {
+                height: 6px;
+                width: 30%;
+                border-radius: 20px;
+                margin-inline-end: 10px;
+                margin: auto 0;
+                display: block;
+                margin-bottom: 5px;
+            }
+            .box_cycle
             {
                 height: 30px;
                 width: 30px;
@@ -27,50 +49,60 @@
                 margin-inline-end: 10px;                
                 display: inline-block;
             }
-            .box-group01
+            .group01
             {
-                margin: auto auto;
+                margin: 50px auto;
                 max-width: 800px;
             }
-            .box-group02
+            .group02
             {
                 text-align: center;
             }
+            .group03
+            {
+                display: inline-block;
+                width: 150px;
+            }
         </style>
     </head>
-    <body class="skeleton-ui__animation02">
-        <div class="box-group01">
-            <div class="skeleton-ui__animation01 box01"></div>
-            <div class="box-group02">
-                <div class="skeleton-ui__animation01 box03"></div>
-                <div class="skeleton-ui__animation01 box02"></div>
-                <div class="skeleton-ui__animation01 box02"></div>
-                <div class="skeleton-ui__animation01 box02"></div>
-                <div class="skeleton-ui__animation01 box02"></div>
-                <div class="skeleton-ui__animation01 box02"></div>
+    <body>
+        <div class="group01">
+            <div class="box_cycle skeleton-ui_animation02"></div>
+            <div class="group03">
+                <div class="box_thin_long skeleton-ui_animation02"></div>
+                <div class="box_thin_short skeleton-ui_animation02"></div>
             </div>
+            <div class="box_big skeleton-ui_animation02"></div>
+            <div class="box_thin_long_far-obj skeleton-ui_animation02"></div>
+            <div class="box_thin_long_far-obj skeleton-ui_animation02"></div>
+            <div class="box_thin_long_far-obj skeleton-ui_animation02"></div>
+            <div class="box_thin_long_far-obj skeleton-ui_animation02"></div>
         </div>
-        <div class="box-group01">
-            <div class="skeleton-ui__animation01 box01"></div>
-            <div class="box-group02">
-                <div class="skeleton-ui__animation01 box03"></div>
-                <div class="skeleton-ui__animation01 box02"></div>
-                <div class="skeleton-ui__animation01 box02"></div>
-                <div class="skeleton-ui__animation01 box02"></div>
-                <div class="skeleton-ui__animation01 box02"></div>
-                <div class="skeleton-ui__animation01 box02"></div>
+        
+        <div class="group01">
+            <div class="box_cycle skeleton-ui_animation01"></div>
+            <div class="group03">
+                <div class="box_thin_long skeleton-ui_animation01"></div>
+                <div class="box_thin_short skeleton-ui_animation01"></div>
             </div>
+            <div class="box_big skeleton-ui_animation01"></div>
+            <div class="box_thin_long_far-obj skeleton-ui_animation01"></div>
+            <div class="box_thin_long_far-obj skeleton-ui_animation01"></div>
+            <div class="box_thin_long_far-obj skeleton-ui_animation01"></div>
+            <div class="box_thin_long_far-obj skeleton-ui_animation01"></div>
         </div>
-        <div class="box-group01">
-            <div class="skeleton-ui__animation01 box01"></div>
-            <div class="box-group02">
-                <div class="skeleton-ui__animation01 box03"></div>
-                <div class="skeleton-ui__animation01 box02"></div>
-                <div class="skeleton-ui__animation01 box02"></div>
-                <div class="skeleton-ui__animation01 box02"></div>
-                <div class="skeleton-ui__animation01 box02"></div>
-                <div class="skeleton-ui__animation01 box02"></div>
+
+        <div class="group01">
+            <div class="box_cycle skeleton-ui_animation02"></div>
+            <div class="group03">
+                <div class="box_thin_long skeleton-ui_animation02"></div>
+                <div class="box_thin_short skeleton-ui_animation02"></div>
             </div>
+            <div class="box_big skeleton-ui_animation02"></div>
+            <div class="box_thin_long_far-obj skeleton-ui_animation02"></div>
+            <div class="box_thin_long_far-obj skeleton-ui_animation02"></div>
+            <div class="box_thin_long_far-obj skeleton-ui_animation02"></div>
+            <div class="box_thin_long_far-obj skeleton-ui_animation02"></div>
         </div>
     </body>
 </html>
