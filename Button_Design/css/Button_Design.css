@@ -1,0 +1,49 @@
+@charset "utf-8";
+
+/*-------------------------------------------------------------
+    File   : Button_Design.css
+    Author : JongYoun, Lee 2020-10-29
+    CSS 적용순서 : 아이디 > 태그와 클래스 > 클래스 > 태그
+    CSS 선택자 선언순서 : Type Selector, Layout Selector, Class Selector, Etc
+    CSS 속성 선언순서 : display, position(top, right, bottom, left, z-index), float/clear, overflow, width/height, margin/padding(top, right, bottom, left),
+    border(top, right, bottom, left), background(image,position,repeat,color), border-radius, box-shadow,
+    font(font-weight, font-style, font-variant, font-size/line-height, font-family), opacity, cursor, box-sizing, etc
+-------------------------------------------------------------*/
+
+.base-button
+{
+    width: 120px;
+    height: 40px;
+    border-radius: 20px;
+    color: white;
+    background-color: rgb(119, 192, 255);
+    box-shadow: 1px 1px 1px 1px rgb(209, 209, 209);
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.button_rect
+{
+    border-radius: 0px;
+}
+.button_cycle
+{
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    vertical-align: middle;
+}
+
+.button-action:hover
+{
+    transition: 0.3s;
+    opacity: 0.7;
+    color: rgb(70, 70, 70);
+}
+
+.button-action:active
+{
+    transition: 0.1s;
+    opacity: 0.9;
+}
