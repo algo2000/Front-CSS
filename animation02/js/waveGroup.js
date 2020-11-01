@@ -10,7 +10,7 @@ export class WaveGroup
         this.totalWaves = 3;
         this.totalPoint = 6;
 
-        this.color = ['rgba(0,199,235,0.4)','rgba(0,146,199,0.4)','rgba(0,87,158,0.4)'];
+        this.color = ['rgba(0,199,235,0.4)','rgba(0,146,199,0.4)','rgba(0,87,158,0.4)','rgba(0,87,158,0.4)','rgba(0,87,158,0.4)'];
 
         this.waves = [];
 
@@ -38,6 +38,24 @@ export class WaveGroup
         {
             const wave = this.waves[i];
             wave.draw(ctx);
-        }   
+        }
+    }
+    line(ctx,stageWidth,stageHeight)
+    {
+        this.pointGap = stageWidth / (this.totalPoint - 1);
+        let prevX = this.pointGap;
+        for(let i = 0; i<this.totalPoint;i++)
+        {
+            const cx = (prevX + this.pointGap*i)/2;
+            ctx.beginPath();
+            ctx.fillStyle = "#000000";
+            ctx.moveTo(cx,0);
+            ctx.lineTo(cx,stageHeight);
+            ctx.lineTo(cx+1,stageHeight);
+            ctx.lineTo(cx+1,0);
+            ctx.fill();
+            ctx.closePath();
+            prevX = this.pointGap*i;
+        }
     }
 }

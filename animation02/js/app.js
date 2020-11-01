@@ -12,7 +12,8 @@ class App
         this.canvas = document.createElement('canvas');
         this.ctx = this.canvas.getContext("2d");
         //body 태그에 캔버스 추가
-        document.body.appendChild(this.canvas);
+        //document.body.appendChild(this.canvas);
+        document.getElementById("js").appendChild(this.canvas);
 
         this.WaveGroup = new WaveGroup();
 
@@ -42,6 +43,7 @@ class App
     {
         this.ctx.clearRect(0,0,this.stageWidth,this.stageHeight);
         this.WaveGroup.draw(this.ctx);
+        this.WaveGroup.line(this.ctx,this.stageWidth,this.stageHeight);
         requestAnimationFrame(this.animate.bind(this));
     }
 }
