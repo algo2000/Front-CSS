@@ -59,7 +59,7 @@ export class Dialog
         const speedX = Math.abs(dx) / FPS;
         const speed = Math.min(Math.max(speedX, 0), 1);
 
-        let rotation = (MAX_ANGLE / 1) * speed;
+        let rotation = MAX_ANGLE * speed;
         rotation = rotation * (dx > 0 ? 1: -1) - this.sideValue;
 
         this.rotation += (rotation - this.rotation) * ROTATE_SPEED;
@@ -67,7 +67,7 @@ export class Dialog
         const tmpPos = this.pos.clone().add(this.origin);
         ctx.save();
         ctx.translate(tmpPos.x, tmpPos.y);
-        ctx.rotate(this.rotation * Math.PI / 100);
+        ctx.rotate(this.rotation * Math.PI / 180);
         ctx.beginPath();
         ctx.fillStyle = '#f4e55a';
         ctx.fillRect(-this.origin.x, -this.origin.y, WIDTH, HEIGHT);
@@ -84,8 +84,8 @@ export class Dialog
             this.mousePos = point.clone().subtract(this.pos);
 
             const xRatioValue = this.mousePos.x / WIDTH;
-            this.origin.x = WIDTH * xRatioValue;
-            this.origin.y = HEIGHT * this.mousePos.y / HEIGHT;
+            this.origin.x = this.mousePos.x;
+            this.origin.y = this.mousePos.y;
 
             this.sideValue = xRatioValue - 0.5;
 

@@ -17,7 +17,7 @@ class App
         this.curItem = null;
 
         this.items = [];
-        this.total = 3;
+        this.total = 10;
 
         for(let i = 0; i < this.total; i++)
         {
