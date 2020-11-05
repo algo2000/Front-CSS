@@ -16,7 +16,7 @@ export class BoxShow
 
         this.point = [];
 
-        for(let i = 0; i<15; i++)
+        for(let i = 0; i<50; i++)
         {
             this.rgba = "rgba("+ this.getRandom(0,256) +","+ this.getRandom(0,256) +","+ this.getRandom(0,256) +",0.5)"
             this.radius = this.getRandom(50,500)
