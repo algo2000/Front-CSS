@@ -17,7 +17,7 @@ class App
         this.curItem = null;
 
         this.items = [];
-        this.total = 10;
+        this.total = 1;
 
         for(let i = 0; i < this.total; i++)
         {
@@ -78,6 +78,10 @@ class App
             this.ctx.strokeStyle = '#ff4338';
 
             this.ctx.beginPath();
+            this.ctx.arc(this.test.x, this.test.y, 8, 0, Math.PI * 2);
+            this.ctx.fill();
+
+            this.ctx.beginPath();
             this.ctx.arc(this.mousePos.x, this.mousePos.y, 8, 0, Math.PI * 2);
             this.ctx.fill();
 
@@ -86,7 +90,8 @@ class App
             this.ctx.fill();
 
             this.ctx.beginPath();
-            this.ctx.moveTo(this.mousePos.x,this.mousePos.y);
+            this.ctx.moveTo(this.test.x,this.test.y);
+            this.ctx.lineTo(this.mousePos.x,this.mousePos.y);
             this.ctx.lineTo(this.curItem.centerPos.x, this.curItem.centerPos.y);
             this.ctx.stroke();
         }

@@ -4,7 +4,7 @@ import
 }from './point.js';
 
 const FOLLOW_SPEED = 0.08;
-const ROTATE_SPEED = 0.12;
+const ROTATE_SPEED = 0.5;
 const SPEED_REDUCE = 0.8;
 const MAX_ANGLE = 30;
 const FPS = 1000/60;
