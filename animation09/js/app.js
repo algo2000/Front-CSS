@@ -3,30 +3,41 @@ import{Point} from './point.js';
 class App
 {
     //생성자
-    constructor(str)
+    constructor()
     {
-        this.classes = document.getElementsByClassName(str);
-        
+        //body태그에 canvas태그를 추가
+        this.canvas = document.createElement('canvas');
+        this.ctx = this.canvas.getContext("2d");
+        //body 태그에 캔버스 추가
+        //document.body.appendChild(this.canvas);
+        document.getElementById("js").appendChild(this.canvas);
+
         //리사이즈 이벤트 화면 크기 변화시
         window.addEventListener('resize', this.resize.bind(this),false);
-        
-        this.flg = false;
-        this.target = null;
-        this.totalCount = this.classes.length;
-        this.marginCount = this.totalCount-1;
-        this.isHover = false;
-        this.itemLeft = [];
-
-        this.hoverRectWith = this.rectWidth + (this.rectWidth/2);
-        
+        //스크린 사이즈를 가져옴
         this.resize();
 
+        this.isCanvasVisible = true;
+
+        this.pos = new Point();
+        this.downPos = new Point();
+        this.setDownPos = new Point();
+        this.mousePos = new Point();
+        this.mousePos2 = new Point();
+
+        this.isDown = false;
+        this.isAuto = false;
+
+        this.maxSize = 0;
+        this.target = null;
+        this.radius = 0;
+        this.prevRadius = 0;
+        this.speed = 0;
+
         requestAnimationFrame(this.animate.bind(this));
-        for(let i = 0; i< this.classes.length; i++)
-        {
-            this.classes[i].addEventListener('mouseout',this.onLeave.bind(this),false);
-            this.classes[i].addEventListener('mouseover',this.onDown.bind(this),false);
-        }
+        addEventListener('touchstart',this.onDown.bind(this),false);
+        addEventListener('touchmove',this.onMove.bind(this),false);
+        addEventListener('touchend',this.onUp.bind(this),false);
     }
 
     //스크린 사이즈를 가져옴
@@ -35,104 +46,135 @@ class App
         this.stageWidth = document.body.clientWidth;
         this.stageHeight = document.body.clientHeight;
 
-        let totalCount = this.totalCount;
-        let marginCount = this.marginCount;
-
-        let stageWidth = this.stageWidth;
-
-        if(this.stageWidth < 1500)
-        {
-            stageWidth = 1500;
-        }
-
-        if(this.totalCount > 6)
-        {
-            totalCount = 6;
-            marginCount = 5;
-        }
-
-        this.margin = stageWidth / ((10 * totalCount)+marginCount);
-        this.rectWidth = (stageWidth - (marginCount*this.margin))/totalCount;
-        this.rectHeight = this.rectWidth;
-        this.imageAreaHeight = this.rectHeight/2;
-
-        for(let i = 0; i< this.classes.length; i++)
-        {
-            this.classes[i].style.left = (this.margin * (i+1)) + (this.rectWidth * i) + "px";
-            this.classes[i].style.width = this.rectWidth + "px";
-            this.classes[i].style.height = this.rectHeight + "px";
-            this.itemLeft[i] = Number((this.margin * (i+1)) + (this.rectWidth * i));
-            this.classes[i].id = i
-            if(this.classes[i].getElementsByClassName("image-area")[0])
-            {
-                this.classes[i].getElementsByClassName("image-area")[0].style.height = this.imageAreaHeight + "px";
-            }
-        }
-        document.getElementById("margin").style.left = (this.margin * (this.classes.length+1)) + (this.rectWidth * this.classes.length) + "px";
+        this.canvas.width = this.stageWidth*2;
+        this.canvas.height = this.stageHeight*2;
+        this.ctx.scale(2,2);
     }
 
     animate(t)
     {
-        requestAnimationFrame(this.animate.bind(this));
+
+        this.ctx.clearRect(0,0,this.stageWidth,this.stageHeight);
+
+        if(this.isCanvasVisible)
+        {
+            requestAnimationFrame(this.animate.bind(this));
+            this.ctx.fillStyle = '#2C5E9E';
+            this.ctx.rect(0, 0, this.stageWidth, this.stageHeight);
+            this.ctx.fill();
+            
+            if(this.target && !this.isAuto)
+            {
+                const move = this.target.clone().subtract(this.pos).reduce(0.08);
+                this.pos.add(move);
+                this.centerPos = this.pos.clone().add(this.mousePos2);
+                this.radius = this.distanceCal(this.downPos,this.centerPos);
+
+                this.speed = this.radius - this.prevRadius;
+
+                this.prevRadius  = this.radius;
+
+                if(this.speed >= 30)
+                {
+                    this.setDownPos = this.downPos;
+                    this.isAuto = true;
+                    this.maxSize = Math.max(this.distanceCal(this.setDownPos,new Point(0,0)),this.distanceCal(this.setDownPos,new Point(this.stageWidth,0)),this.distanceCal(this.setDownPos,new Point(0,this.stageHeight)),this.distanceCal(this.setDownPos,new Point(this.stageWidth,this.stageHeight)));
+                }
+
+                this.setClip(this.downPos);
+            }
+
+            if(this.isAuto)
+            {
+                if(this.radius>this.maxSize)
+                {
+                    this.canvas.style.zIndex = - 100;
+                    this.isCanvasVisible = false;
+                }
+                else
+                {
+                    this.setClip(this.setDownPos,this.speed);
+                }
+            }
+
+            if(this.radius>=0 && !this.isDown)
+            {
+                this.setClip(this.downPos,-10);
+            }
+        }
+        // if(this.target)
+        // {
+        //     this.ctx.fillStyle = "blue";
+
+        //     this.ctx.beginPath();
+        //     this.ctx.arc(this.downPos.x, this.downPos.y, 8, 0, Math.PI * 2);
+        //     this.ctx.fill();
+
+        //     this.ctx.fillStyle = "red";
+        //     this.ctx.beginPath();
+        //     this.ctx.arc(this.mousePos.x, this.mousePos.y, 8, 0, Math.PI * 2);
+        //     this.ctx.fill();
+
+        //     this.ctx.fillStyle = "green";
+        //     this.ctx.beginPath();
+        //     this.ctx.arc(this.centerPos.x, this.centerPos.y, 8, 0, Math.PI * 2);
+        //     this.ctx.fill();
+    
+        //     this.ctx.beginPath();
+        //     this.ctx.moveTo(this.downPos.x,this.downPos.y);
+        //     this.ctx.lineTo(this.mousePos.x,this.mousePos.y);
+        //     this.ctx.lineTo(this.centerPos.x, this.centerPos.y);
+        //     this.ctx.stroke();
+        // }
     }
 
+    setClip(point,radiusDelta = 0)
+    {
+        this.ctx.clearRect(0,0,this.stageWidth,this.stageHeight);
+        this.ctx.fillStyle = '#2C5E9E';
+        let region = new Path2D();
+        region.rect(0, 0, this.stageWidth, this.stageHeight);
+        region.arc(point.x, point.y, this.radius, 0, Math.PI*2);
+        this.radius += radiusDelta;
+        this.ctx.fill(region, 'evenodd');
+    }
+
+    distanceCal(point1,point2)
+    {
+        const result = Math.sqrt(Math.pow(point2.x - point1.x,2) + Math.pow(point2.y - point1.y,2));
+        return result;
+    }
     onDown(e)
     {
-        let target = e.target.offsetParent;
-        target.style.boxShadow = "0px 0px 10px black";
-        target.style.width = this.rectWidth + (this.rectWidth/2) + "px";
-        target.style.height = this.rectHeight + (this.rectHeight/2) + "px";
-        target.style.zIndex = "10";
+        this.mousePos.x = e.touches[0].clientX;
+        this.mousePos.y = e.touches[0].clientY;
 
-        if(Number(target.id) == this.totalCount-1)
-        {
-            target.style.left = this.itemLeft[Number(target.id)] - Number((this.rectWidth/2)) + "px";
-        }
-        else if(Number(e.target.offsetParent.id) != 0)
-        {
-            target.style.left = this.itemLeft[Number(target.id)] - Number((this.rectWidth/2)/2) + "px";
-        }
-        let targetImageArea = e.target.offsetParent.getElementsByClassName("image-area")[0];
-        if(targetImageArea)
-        {
-            targetImageArea.style.height = (this.rectHeight + (this.rectHeight/2))/2 + "px";
-        }
-    }
-    onLeave(e)
-    {
-        let targetImageArea = e.target.offsetParent.getElementsByClassName("image-area")[0];
-        if(targetImageArea)
-        {
-            targetImageArea.style.height = this.rectHeight/2 + "px";
-        }
-        let target = e.target.offsetParent;
-        target.style.boxShadow = "0px 0px 3px black";
-        target.style.width = this.rectWidth + "px";
-        target.style.height = this.rectHeight + "px";
-        target.style.left = this.itemLeft[Number(target.id)] + "px";
-        target.style.zIndex = "0";
+        this.startPos = this.mousePos.clone(); 
+        this.downPos = this.mousePos.clone(); 
+        this.pos = this.mousePos.clone(); 
+        this.mousePos2 = this.mousePos.clone().subtract(this.pos);
+
+        this.isDown = true;   
     }
 
-    getStyle(ob)
+    onMove(e)
     {
-        return window.getComputedStyle(ob,null);
+        if(this.isDown)
+        {
+            this.mousePos.x = e.touches[0].clientX;
+            this.mousePos.y = e.touches[0].clientY;
+
+            this.target = this.startPos.clone().add(this.mousePos).subtract(this.downPos);
+        }
+    }
+    onUp(e)
+    {
+        this.target = null;
+        this.isDown = false;
     }
 }
 
 window.onload = () =>
 {
-    if (isMobile()) 
-    {
-        console.log('mobile 접속'); 
-    } 
-    else 
-    {
-        new App("pic");
-        new App("pic2");
-    }
-}
-
-function isMobile() 
-{
-    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    new App();
 }
