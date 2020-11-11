@@ -59,7 +59,10 @@ class App
         if(this.isCanvasVisible)
         {
             requestAnimationFrame(this.animate.bind(this));
-            this.ctx.fillStyle = '#2C5E9E';
+            var gra = this.ctx.createLinearGradient(0, 0, this.stageWidth, this.stageHeight);
+            gra.addColorStop(0, '#FFA953');
+            gra.addColorStop(1, '#FF7474');
+            this.ctx.fillStyle = gra;
             this.ctx.rect(0, 0, this.stageWidth, this.stageHeight);
             this.ctx.fill();
             
@@ -131,7 +134,11 @@ class App
     setClip(point,radiusDelta = 0)
     {
         this.ctx.clearRect(0,0,this.stageWidth,this.stageHeight);
-        this.ctx.fillStyle = '#2C5E9E';
+
+        var gra = this.ctx.createLinearGradient(0, 0, this.stageWidth, this.stageHeight);
+        gra.addColorStop(0, '#FFA953');
+        gra.addColorStop(1, '#FF7474');
+        this.ctx.fillStyle = gra;
         let region = new Path2D();
         region.rect(0, 0, this.stageWidth, this.stageHeight);
         region.arc(point.x, point.y, this.radius, 0, Math.PI*2);
