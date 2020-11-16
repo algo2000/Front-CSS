@@ -1,5 +1,11 @@
 $(document).on("click",".tag-close",function(){
-  $( this ).parent().remove();
+  var $target = $( this ).parent();
+  $($target).animate({
+    "width" : "0px",
+    "height" : "0px"
+  }, 200, function() {
+    $($target).remove();
+  });
 });
 
 $(document).on('keydown','#search', function(e) {
@@ -8,7 +14,12 @@ $(document).on('keydown','#search', function(e) {
     if($(this).val() === "" && $(".tag").length !== 0)
     {
       var $temp = $(".tag");
-      $temp[($temp.length)-1].remove()
+      $($temp[($temp.length)-1]).animate({
+        "width" : "0px",
+        "height" : "0px"
+      }, 200, function() {
+        $temp[($temp.length)-1].remove();
+      });
     }
   }
 });

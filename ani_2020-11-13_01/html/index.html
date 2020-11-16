@@ -19,13 +19,14 @@
                 overflow: hidden;
                 border-radius: 0px 0px 10px 10px;
                 background: white;
-                transition: 0.5s;
             }
             .auto-element
             {
                 padding:10px 10px;
+                height: 18px;
                 color: rgb(99, 99, 99);
                 cursor: pointer;
+                overflow: hidden;
             }
             #search-tags
             {
@@ -34,8 +35,8 @@
                 padding: 2% 5%;
                 border-radius: 10px;
                 background: white;
-                box-shadow:  7px 7px 14px #cbcbcb, 
-                            -7px -7px 14px #ffffff;
+                box-shadow:  7px 7px 14px #cbcbcb,
+                -7px -7px 14px #ffffff;
                 font-size: 20px;
                 transition: 1s;
             }
@@ -51,9 +52,9 @@
             #search_box
             {
                 position: absolute;
-                top: 40%;
+                top: 30%;
                 left: 50%;
-                transform: translate(-50%,-50%);
+                transform: translate(-50%,0%);
                 width: 70%;
                 max-width: 420px;
                 min-width: 270px;
@@ -88,7 +89,13 @@
                 line-height: 24px;
                 overflow: hidden;
                 vertical-align: middle;
+                height: 26px;
                 margin: 3px 4px;
+            }
+            #tags
+            {
+                overflow: hidden;
+                height: auto;
             }
         </style>
         <style>
@@ -114,7 +121,7 @@
             }
         </style>
     </head>
-    <body>
+    <body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
         <div id="search_box">
             <div id="title">
                 HIYAMU.la
