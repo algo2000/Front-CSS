@@ -12,19 +12,6 @@ var isClick = false;
 
 var barAni;
 
-function setAnimation()
-{
-    barAni = setInterval(function(){
-        if(maxTop <= startTopPosY + gap && minTop >= startTopPosY + gap)
-        {
-            $("#contents").css({
-                "top" : startTopPosY + gap +"px"
-            });
-        }
-    });    
-}
-clearInterval(barAni);
-
 $( document ).ready( function(){
     $( window ).resize( function(){
         initSet();
@@ -50,10 +37,6 @@ $('#drag-bar').on('touchstart',function(e)
     movePosY = e.originalEvent.touches[0].clientY;
     gap = movePosY - startPosY;
     isClick = true;
-    if($('#content').scrollTop() === 0)
-    {
-        setAnimation();
-    }
 });
 
 $('#drag-bar').on('touchmove',function(e) 
@@ -62,13 +45,18 @@ $('#drag-bar').on('touchmove',function(e)
     {
         movePosY = e.originalEvent.touches[0].clientY;
         gap = movePosY - startPosY;
+        if(maxTop <= startTopPosY + gap && minTop >= startTopPosY + gap)
+        {
+            $("#contents").css({
+                "top" : startTopPosY + gap +"px"
+            });
+        }
     }
 });
 
 $('#drag-bar').on('touchend',function(e) 
 {
     isClick = false;
-    clearInterval(barAni);
     var top = (Number)($("#contents").css("top").replace("px",""))
     var ratioM;
     var ratioP;
@@ -89,10 +77,7 @@ $('#drag-bar').on('touchend',function(e)
     }
     else
     {        
-        if($('#content').scrollTop() === 0)
-        {
-            setAnimationAuto(1);
-        }
+        setAnimationAuto(1);
     }
 });
 
