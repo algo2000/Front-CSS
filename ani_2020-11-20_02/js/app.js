@@ -50,7 +50,10 @@ $('#drag-bar').on('touchstart',function(e)
     movePosY = e.originalEvent.touches[0].clientY;
     gap = movePosY - startPosY;
     isClick = true;
-    setAnimation();
+    if($('#content').scrollTop() === 0)
+    {
+        setAnimation();
+    }
 });
 
 $('#drag-bar').on('touchmove',function(e) 
