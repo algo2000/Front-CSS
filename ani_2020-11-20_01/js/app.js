@@ -156,14 +156,36 @@ $('#drag-bar').on('touchend',function(e)
     isClick = false;
     clearInterval(barAni);
     var top = (Number)($("#contents").css("top").replace("px",""))
-    if(Math.abs(maxTop - top) > Math.abs(minTop - top))
+    var ratioM;
+    var ratioP;
+    if(gap>=0)
     {
-        setAnimationAuto(1);
+        ratioP = 0.3;
+        ratioM = 1 - ratioP;
     }
     else
     {
+        ratioM = 0.3;
+        ratioP = 1 - ratioM;
+    }
+
+    if(maxTop <= top && top <= stageHeight*ratioP)
+    {
         setAnimationAuto(-1);
     }
+    else
+    {
+        setAnimationAuto(1);
+    }
+
+    // if(Math.abs(maxTop - top) > Math.abs(minTop - top))
+    // {
+    //     setAnimationAuto(1);
+    // }
+    // else
+    // {
+    //     setAnimationAuto(-1);
+    // }
 });
 
 function setAnimationAuto(vec)
@@ -172,12 +194,12 @@ function setAnimationAuto(vec)
     {
         $("#contents").animate({
             "top" : maxTop + "px"
-        },500);
+        },300);
     }
     else
     {
         $("#contents").animate({
             "top" : minTop + "px"
-        }, 500);
+        }, 300);
     }
 }
