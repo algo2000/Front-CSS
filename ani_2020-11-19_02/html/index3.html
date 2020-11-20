@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta html-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+        <title>Sheep</title>
+        <link rel="stylesheet" type="text/css" href="../css/style.css">
+        <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script type="module" src="../js/app2.js"></script>
+        <style>
+            body
+            {
+                background-color: rgb(24, 24, 24);
+            }
+        </style>
+        <style>
+            #contents
+            {
+                position: absolute;
+                top:95%;
+                left: 50%;
+                transform: translate(-50%,0%);
+
+                width: 100%;
+                height: 95%;
+                background-color: rgb(250, 250, 250);
+
+                border-radius: 30px 30px 0px 0px;
+            }
+
+            #drag-bar
+            {
+                height: 100%;
+                width: 100%;
+                /* background-color: aqua; */
+                border-radius: 30px 30px 0px 0px;
+                padding-top: 30px;
+            }
+
+            #bar-svg
+            {
+                position: absolute;
+                top: 2%;
+                left: 50%;
+                transform: translate(-50%,-50%);
+            }
+        </style>
+    </head>
+    <body>
+        <div id="contents">
+            <div id="drag-bar">
+                <svg id="bar-svg" xmlns="http://www.w3.org/2000/svg" width="50" height="6" viewBox="0 0 50 6">
+                    <rect width="50" height="6" rx="3" fill="#aaa"/>
+                  </svg>                  
+                <div>
+                    asdfasdfasdfasdadsf
+                </div>
+            </div>
+        </div>
+    </body>
+</html> 
