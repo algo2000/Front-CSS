@@ -45,11 +45,14 @@ $('#drag-bar').on('touchmove',function(e)
     {
         movePosY = e.originalEvent.touches[0].clientY;
         gap = movePosY - startPosY;
-        if(maxTop <= startTopPosY + gap && minTop >= startTopPosY + gap)
+        if($('#content').scrollTop() === 0)
         {
-            $("#contents").css({
-                "top" : startTopPosY + gap +"px"
-            });
+            if(maxTop <= startTopPosY + gap && minTop >= startTopPosY + gap)
+            {
+                $("#contents").css({
+                    "top" : startTopPosY + gap +"px"
+                });
+            }
         }
     }
 });
@@ -93,6 +96,9 @@ function setAnimationAuto(vec)
     {
         $("#contents").animate({
             "top" : minTop + "px"
-        }, 100);
+        }, 100, function()
+        {
+            $('#content').scrollTop(0);
+        });
     }
 }
