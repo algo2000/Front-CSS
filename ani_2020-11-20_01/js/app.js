@@ -194,12 +194,12 @@ function setAnimationAuto(vec)
     {
         $("#contents").animate({
             "top" : maxTop + "px"
-        },300);
+        },200);
     }
     else
     {
         $("#contents").animate({
             "top" : minTop + "px"
-        }, 300);
+        }, 200);
     }
 }
