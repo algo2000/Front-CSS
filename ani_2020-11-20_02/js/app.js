@@ -88,8 +88,11 @@ $('#drag-bar').on('touchend',function(e)
         setAnimationAuto(-1);
     }
     else
-    {
-        setAnimationAuto(1);
+    {        
+        if($('#content').scrollTop() === 0)
+        {
+            setAnimationAuto(1);
+        }
     }
 });
 
