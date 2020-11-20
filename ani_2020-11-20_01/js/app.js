@@ -27,7 +27,6 @@ clearInterval(barAni);
 
 $( document ).ready( function(){
     $( window ).resize( function(){
-        console.log("1");
         initSet();
     });
     initSet();
