@@ -160,12 +160,12 @@ $('#drag-bar').on('touchend',function(e)
     var ratioP;
     if(gap>=0)
     {
-        ratioP = 0.3;
+        ratioP = 0.2;
         ratioM = 1 - ratioP;
     }
     else
     {
-        ratioM = 0.3;
+        ratioM = 0.2;
         ratioP = 1 - ratioM;
     }
 
