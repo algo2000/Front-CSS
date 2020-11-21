@@ -86,7 +86,7 @@ $('#drag-bar').on('touchend',function(e)
 
 $('#content').on('touchend touchstart touchmove',function(e) 
 {
-    if($('#content').scrollTop() !== 0)
+    if($('#content').scrollTop() <= 0)
     {
         e.stopPropagation();
         console.log($('#content').scrollTop());
