@@ -12,6 +12,7 @@
             body
             {
                 background-color: rgb(24, 24, 24);
+                color: white;
             }
             button
             {
@@ -22,101 +23,116 @@
         <style>
             #contents
             {
-                position: absolute;
-                top: 5%;
-                left: 50%;
-                transform: translate(-50%,0%);
+                color: white;
+                top: 94%;
 
+                position: fixed;
+                background-color: rgb(36, 36, 36);
+                opacity: 92%;
                 width: 100%;
                 height: 100%;
-                background-color: rgb(250, 250, 250);
+                border-radius: 20px 20px 0px 0px;
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+            }
 
-                border-radius: 30px 30px 0px 0px;
+            #content
+            {
+                overflow-y: auto;
+                height: 90%;
+                padding: 0px 5%;
             }
 
             #drag-bar
             {
+                margin-top: 10px;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+            .cartoon
+            {
+                width: 100%;
+                height: 400px;
+                background-color: rgb(22, 22, 22);
+                border-radius: 20px;
+                margin: 30px 0px;
+            }
+            .image-box
+            {
+                border-radius: 20px 20px 0px 0px;
+                height: 200px;
+                width: 100%;
+                overflow: hidden;
+                background-color: black;
+                text-align: center;
+            }
+            .image
+            {
                 height: 100%;
-                width: 100%;
-                /* background-color: aqua; */
-                border-radius: 30px 30px 0px 0px;
-                padding-top: 30px;
-            }
-
-            #bar-svg
-            {
-                position: absolute;
-                top: 2%;
-                left: 50%;
-                transform: translate(-50%,-50%);
-            }
-            #content
-            {
-                overflow: auto;
-                width: 100%;
-                height: 100%;
-                padding-bottom:300px;
-                bottom:0px;
-            }
-            .emptyPlace
-            {
-                height: 12%;
-                width: 100%;
             }
         </style>
     </head>
     <body>
+        asdfasdfsadfsdafsdfsd<br>
+        sdfasdfsadf<br>
+        asdfasdfsadfsdafsdfsd<br>
+        asdfasdfsadfsdafsdfsd<br>
+        sdfasdfsadf<br>
+        asdfasdfsadfsdafsdfsd<br>asdfasdfsadfsdafsdfsd<br>
+        sdfasdfsadf<br>
+        asdfasdfsadfsdafsdfsd<br>asdfasdfsadfsdafsdfsd<br>
+        sdfasdfsadf<br>
+        asdfasdfsadfsdafsdfsd<br>asdfasdfsadfsdafsdfsd<br>
+        sdfasdfsadf<br>
+        asdfasdfsadfsdafsdfsd<br>asdfasdfsadfsdafsdfsd<br>
+        sdfasdfsadf<br>
+        asdfasdfsadfsdafsdfsd<br>asdfasdfsadfsdafsdfsd<br>
+        sdfasdfsadf<br>
+        asdfasdfsadfsdafsdfsd<br>asdfasdfsadfsdafsdfsd<br>
+        sdfasdfsadf<br>
+        asdfasdfsadfsdafsdfsd<br>
+        asdfasdfsadfsdafsdfsd<br>
+        sdfasdfsadf<br>
+        asdfasdfsadfsdafsdfsd<br>asdfasdfsadfsdafsdfsd<br>
+        sdfasdfsadf<br>
+        asdfasdfsadfsdafsdfsd<br>asdfasdfsadfsdafsdfsd<br>
+        sdfasdfsadf<br>
+        asdfasdfsadfsdafsdfsd<br>asdfasdfsadfsdafsdfsd<br>
+        sdfasdfsadf<br>
+        asdfasdfsadfsdafsdfsd<br>asdfasdfsadfsdafsdfsd<br>
+        sdfasdfsadf<br>
+        asdfasdfsadfsdafsdfsd<br>asdfasdfsadfsdafsdfsd<br>
+        sdfasdfsadf<br>
+        asdfasdfsadfsdafsdfsd<br>asdfasdfsadfsdafsdfsd<br>
+        sdfasdfsadf<br>
+        asdfasdfsadfsdafsdfsd<br>asdfasdfsadfsdafsdfsd<br>
+        sdfasdfsadf<br>
+        asdfasdfsadfsdafsdfsd<br>asdfasdfsadfsdafsdfsd<br>
+        sdfasdfsadf<br>
+        asdfasdfsadfsdafsdfsd<br>
+        asdfasdfsadfsdafsdfsd<br>asdfasdfsadfsdafsdfsd<br>
+        sdfasdfsadf<br>
+        asdfasdfsadfsdafsdfsd<br>
         <div id="contents">
             <div id="drag-bar">
                 <svg id="bar-svg" xmlns="http://www.w3.org/2000/svg" width="50" height="6" viewBox="0 0 50 6">
                     <rect width="50" height="6" rx="3" fill="#aaa"/>
-                  </svg>                  
-                <div id="content">
-                    <div>
-                        asdfasdfasdfasdadsf
-                        <button>버튼</button>
+                </svg>
+            </div>
+            <div id="content">
+                <div class="cartoon">
+                    <div class="image-box">
+                        <img class="image" src="../image/image.png">
                     </div>
-                    <div>
-                        asdfasdfasdfasdadsf
-                        <button>버튼</button>
+                </div>
+                <div class="cartoon">
+                    <div class="image-box">
+                        <img class="image" src="../image/image.png">
                     </div>
-                    <div>
-                        asdfasdfasdfasdadsf
-                        <button>버튼</button>
-                    </div>
-                    <div>
-                        asdfasdfasdfasdadsf
-                        <button>버튼</button>
-                    </div>
-                    <div>
-                        asdfasdfasdfasdadsf
-                        <button>버튼</button>
-                    </div>
-                    <div>
-                        asdfasdfasdfasdadsf
-                        <button>버튼</button>
-                    </div>
-                    <div>
-                        asdfasdfasdfasdadsf
-                        <button>버튼</button>
-                    </div>
-                    <div>
-                        asdfasdfasdfasdadsf
-                        <button>버튼</button>
-                    </div>
-                                        <div>
-                        asdfasdfasdfasdadsf
-                        <button>버튼</button>
-                    </div>
-                    <div>
-                        asdfasdfasdfasdadsf
-                        <button>버튼</button>
-                    </div>
-                    <div>
-                        asdfasdfasdfasdadsf
-                        <button>버튼</button>
-                    </div>
-                    <div class="emptyPlace">
+                </div>
+                <div class="cartoon">
+                    <div class="image-box">
+                        <img class="image" src="../image/image.png">
                     </div>
                 </div>
             </div>
