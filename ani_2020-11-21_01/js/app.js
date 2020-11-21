@@ -106,7 +106,7 @@ function setAnimationAuto(vec)
     }
 }
 
-$(document).on('touchstart touchmove touchend','#content',function(e)
+$(document).on('touchstart touchend','#content',function(e)
 {
     e.stopPropagation();
 });
