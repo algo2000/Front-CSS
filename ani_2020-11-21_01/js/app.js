@@ -91,6 +91,7 @@ $('#content').on('touchend touchstart touchmove',function(e)
         e.stopPropagation();
         console.log($('#content').scrollTop());
     }
+    alert("dafsd");
 });
 
 function setAnimationAuto(vec)
@@ -111,8 +112,3 @@ function setAnimationAuto(vec)
         });
     }
 }
-
-$('#content').on('scrollstart',function(e) 
-{
-    alert("1");
-});
