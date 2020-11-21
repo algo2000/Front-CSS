@@ -8,6 +8,7 @@ var mousePos;
 $(document).on('touchstart','#contents',function(e)
 {
     isTouch = true;
+    $('body').css("overflow","hidden");
 });
 $(document).on('touchmove','#contents',function(e)
 {
@@ -22,9 +23,10 @@ $(document).on('touchmove','#contents',function(e)
 $(document).on('touchend','#contents',function(e)
 {
     isTouch = false;
+    $('body').css("overflow","auto");
 });
 
-$(document).on('touchstart touchmove touchend scroll','#content',function(e)
+$(document).on('touchstart touchmove touchend','#content',function(e)
 {
     e.stopPropagation();
 });
