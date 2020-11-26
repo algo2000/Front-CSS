@@ -14,11 +14,13 @@ $(document).on("click","body",function(e)
 });
 $(document).on("focusin","#search",function()
 {
-    $('body').css('overflow','hidden');
+    $('body').addClass('scrollOff').on('scroll touchmove mousewheel', function(e){
+        e.preventDefault();
+     });
 });
 $(document).on("focusout","#search",function()
 {
-    $('body').css('overflow','auto');
+    $('body').removeClass('scrollOff').off('scroll touchmove mousewheel');
 });
 
 $(document).on("focusin propertychange paste input","#search",function(){
