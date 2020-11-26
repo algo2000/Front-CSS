@@ -14,11 +14,11 @@ $(document).on("click","body",function(e)
 });
 $(document).on("focusin","#search",function()
 {
-    $('#search').css('overflow','hidden');
+    $('body').css('overflow','hidden');
 });
 $(document).on("focusout","#search",function()
 {
-    $('#search').css('overflow','auto');
+    $('body').css('overflow','auto');
 });
 
 $(document).on("focusin propertychange paste input","#search",function(){
