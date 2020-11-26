@@ -12,6 +12,15 @@ $(document).on("click","body",function(e)
         })
     }
 });
+$(document).on("focusin","#search",function()
+{
+    $('#search').css('overflow','hidden');
+});
+$(document).on("focusout","#search",function()
+{
+    $('#search').css('overflow','auto');
+});
+
 $(document).on("focusin propertychange paste input","#search",function(){
     var currentVal = $(this).val();
     if(currentVal === "")
