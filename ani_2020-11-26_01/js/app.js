@@ -17,6 +17,7 @@ function boxVisibility(exPageNum, nowPageNum)
     }, 300, function()
     {
         $(signInBox[nowPageNum]).css('display','block');
+        ($('.sign-input')[page]).focus();
     });
 }
 
@@ -28,4 +29,31 @@ $(document).on('click','.next-button', function()
 $(document).on('click','.back-button', function()
 {
     boxVisibility(page,--page);
+});
+
+$(document).on('keydown','.sign-input', function(e)
+{
+    if(e.keyCode==13)
+    {
+        if(page+1 === signInBox.length)
+        {
+            $('#sign-button').click();
+        }
+        else
+        {
+            ($('.next-button')[page]).click();
+        }
+    }
+});
+
+$(document).on('click','#sign-button', function()
+{
+    if(page+1 === signInBox.length)
+    {
+        $('#sign-in-form').submit();
+    }
+    else
+    {
+        return false;
+    }
 });

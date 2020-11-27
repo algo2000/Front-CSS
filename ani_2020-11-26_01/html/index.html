@@ -31,9 +31,12 @@
                 outline: none;
                 opacity: 90%;
             }
-            button
+            .button
             {
+                display: inline-block;
                 cursor:pointer;
+                text-align: center;
+                line-height: 50px;
             }
         </style>
         <style>
@@ -94,13 +97,13 @@
                 border-radius: 10px;
                 font-size: 15px;
             }
-            #button-left
+            .button-left
             {
                 float: left;
                 background-color: rgb(233, 233, 233);
                 color: rgb(104, 104, 104);
             }
-            #button-right
+            .button-right
             {
                 float: right;
                 background-color: rgb(52, 106, 255);
@@ -135,32 +138,25 @@
             <!-- <div id="sign-in-title">
                 Sign In
             </div> -->
-            <div class="sign-in-box" id="js-id">
-                <div class="sign-input-box">
-                    <input class="sign-input" type="text" placeholder="ID">
+            <form id="sign-in-form" action="http://localhost:8080/sign-in" method="POST">
+                <div class="sign-in-box" id="js-id">
+                    <div class="sign-input-box">
+                        <input class="sign-input" autocomplete="off" type="text" placeholder="ID" name="user_id">
+                    </div>
+                    <div class="button-box">
+                        <span class="button next-button sign-button-big">Next</span>
+                    </div>
                 </div>
-                <div class="button-box">
-                    <button class="next-button sign-button-big">Next</button>
+                <div class="sign-in-box" id="js-password" style="display: none;">
+                    <div class="sign-input-box">
+                        <input class="sign-input" autocomplete="off" type="password" placeholder="Password" name="password">
+                    </div>
+                    <div class="button-box">
+                        <span class="button back-button sign-button-small button-left">Back</span>
+                        <span class="button sign-button-small button-right" id="sign-button">Sign In</span>
+                    </div>
                 </div>
-            </div>
-            <div class="sign-in-box" id="js-password" style="display: none;">
-                <div class="sign-input-box">
-                    <input class="sign-input" type="password" placeholder="Password">
-                </div>
-                <div class="button-box">
-                    <button class="back-button sign-button-small" id="button-left">Back</button>
-                    <button class="next-button sign-button-small" id="button-right">Next</button>
-                </div>
-            </div>
-            <div class="sign-in-box" id="js-email" style="display: none;">
-                <div class="sign-input-box">
-                    <input class="sign-input" type="text" placeholder="E-mail">
-                </div>
-                <div class="button-box">
-                    <button class="back-button sign-button-small" id="button-left">Back</button>
-                    <button class="sign-in-button sign-button-small" id="button-right">Sign In</button>
-                </div>
-            </div>
+            </form>
         </div>
     </body>
 </html> 
