@@ -1,22 +1,22 @@
-var signInBox = $('.sign-box');
+var signBox = $('.sign-box');
 
 var page = 0;
 
 
 function boxVisibility(exPageNum, nowPageNum)
 {
-    $(signInBox[exPageNum]).animate({
+    $(signBox[exPageNum]).animate({
         'opacity' : '0%'
     },300, function()
     {
-        $(signInBox[exPageNum]).css('display','none');
+        $(signBox[exPageNum]).css('display','none');
     });
 
-    $(signInBox[nowPageNum]).animate({
+    $(signBox[nowPageNum]).animate({
         'opacity' : '100%'
     }, 300, function()
     {
-        $(signInBox[nowPageNum]).css('display','block');
+        $(signBox[nowPageNum]).css('display','block');
         ($('.sign-input')[page]).focus();
     });
 }
@@ -35,7 +35,7 @@ $(document).on('keydown','.sign-input', function(e)
 {
     if(e.keyCode==13)
     {
-        if(page+1 === signInBox.length)
+        if(page+1 === signBox.length)
         {
             $('#sign-button').click();
         }
@@ -48,11 +48,16 @@ $(document).on('keydown','.sign-input', function(e)
 
 $(document).on('click','#sign-button', function()
 {
-    if(page+1 === signInBox.length)
+    if(page+1 === signBox.length)
     {
         var form = $("form[name=sign-form]").serialize();
+        var requestPath = "sign-in";
+        if($('#sign-button').text() === "Sign Up")
+        {
+            requestPath = "sign-up";
+        }
         $.ajax({
-            url: "/sign-up",
+            url: "/"+requestPath,
             type: "POST",
             data: form,
             success: function(result)

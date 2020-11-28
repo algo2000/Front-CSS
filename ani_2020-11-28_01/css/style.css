@@ -1,0 +1,13 @@
+*
+{
+    font-family: 'Noto Sans', sans-serif;
+    color: white;
+}
+body
+{
+    background-color: rgb(24, 24, 24);
+}
+input:focus, button:focus{
+    outline: none;
+    opacity: 90%;
+}
