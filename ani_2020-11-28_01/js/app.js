@@ -41,7 +41,6 @@ $(document).on('keydown','.sign-input', function(e)
         }
         else
         {
-            console.log(($('.next-button')[page]));
             ($('.next-button')[page]).click();
         }
     }
