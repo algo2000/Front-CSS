@@ -62,7 +62,21 @@ $(document).on('click','#sign-button', function()
             data: form,
             success: function(result)
             {
-                alert(result);
+                if(result === "200")
+                {
+                    if(requestPath === "sign-in")
+                    {
+                        $(location).attr('href', '/');
+                    }
+                    else
+                    {
+                        $(location).attr('href', '/sign-in');
+                    }
+                }
+                else
+                {
+                    alert(result);
+                }
             },
             error: function()
             {
