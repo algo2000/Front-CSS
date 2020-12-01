@@ -29,6 +29,7 @@ function initSet()
 $(document).on('touchstart','#contents',function(e)
 {
     $('body').css('overflow','hidden');
+    $('html').css('overflow','hidden');
     isTouch = true;
     startPos = e.originalEvent.touches[0].clientY;
     movePos = e.originalEvent.touches[0].clientY;
@@ -101,6 +102,7 @@ function setAnimationAuto()
             $('#content').scrollTop(0);
         });
         $('body').css('overflow','auto');
+        $('html').css('overflow','auto');
     }
 }
 
