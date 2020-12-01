@@ -88,7 +88,6 @@ function setAnimationAuto()
         ratioM = 0.2;
         ratioP = 1 - ratioM;
     }
-    $("#contents").css('transition','0.5s');
     if(maxTop <= top && top <= stageHeight*ratioP)
     {   
         // $("#contents").animate({
