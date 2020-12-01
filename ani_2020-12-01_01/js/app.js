@@ -12,9 +12,6 @@ var startTopPos;
 var gap;
 
 $( document ).ready( function(){
-    $( window ).resize( function(){
-        initSet();
-    });
     initSet();
 });
 
@@ -37,7 +34,6 @@ $(document).on('touchstart','#contents',function(e)
     movePos = e.originalEvent.touches[0].clientY;
     gap = movePos - startPos;
     startTopPos = (Number)($("#contents").css("top").replace("px",""));
-    $('body').css("overflow","hidden");
 });
 
 $(document).on('touchmove','#contents',function(e)
