@@ -42,6 +42,7 @@ $(document).on('touchstart','#contents',function(e)
 
 $(document).on('touchmove','#contents',function(e)
 {
+    console.log($('#contents').scrollTop());
     if(isTouch)
     {
         movePos = e.originalEvent.touches[0].clientY;
@@ -61,12 +62,12 @@ $(document).on('touchmove','#contents',function(e)
 //     $('body').css("overflow","auto");
 // });
 
-$('#drag-bar').on('touchend',function(e) 
+$('#contents').on('touchend',function(e) 
 {
     setAnimationAuto();
 });
 
-$('#drag-bar').on('click',function(e)
+$('#contents').on('click',function(e)
 {
     setAnimationAuto();
 });
@@ -88,25 +89,22 @@ function setAnimationAuto()
         ratioM = 0.2;
         ratioP = 1 - ratioM;
     }
+
     if(maxTop <= top && top <= stageHeight*ratioP)
     {   
-        // $("#contents").animate({
-        //     "top" : maxTop + "px"
-        // },100);
-        $("#contents").css('top',maxTop+'px');
+        $("#contents").animate({
+            "top" : maxTop + "px"
+        },100);
     }
     else
     {        
-        // $("#contents").animate({
-        //     "top" : minTop + "px"
-        // }, 100, function()
-        // {
-        //     $('#content').scrollTop(0);
-        //     $('body').css('overflow','auto');
-        // });
-        $("#contents").css('top',minTop+'px');
-        $('#content').scrollTop(0);
-        $('body').css('overflow','auto');
+        $("#contents").animate({
+            "top" : minTop + "px"
+        }, 100, function()
+        {
+            $('#content').scrollTop(0);
+            $('body').css('overflow','auto');
+        });
     }
 }
 
