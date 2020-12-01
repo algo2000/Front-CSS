@@ -99,8 +99,8 @@ function setAnimationAuto()
         }, 100, function()
         {
             $('#content').scrollTop(0);
-            $('body').css('overflow','auto');
         });
+        $('body').css('overflow','auto');
     }
 }
 
