@@ -31,16 +31,18 @@ function initSet()
 
 $(document).on('touchstart','#contents',function(e)
 {
+    $('body').css('overflow','hidden');
     isTouch = true;
     startPos = e.originalEvent.touches[0].clientY;
     movePos = e.originalEvent.touches[0].clientY;
     gap = movePos - startPos;
     startTopPos = (Number)($("#contents").css("top").replace("px",""));
-
     $('body').css("overflow","hidden");
 });
+
 $(document).on('touchmove','#contents',function(e)
 {
+    console.log($('#contents').scrollTop());
     if(isTouch)
     {
         movePos = e.originalEvent.touches[0].clientY;
@@ -62,8 +64,19 @@ $(document).on('touchmove','#contents',function(e)
 
 $('#drag-bar').on('touchend',function(e) 
 {
-    isClick = false;
+    setAnimationAuto();
+});
+
+$('#drag-bar').on('click',function(e)
+{
+    setAnimationAuto();
+});
+
+function setAnimationAuto()
+{
     var top = (Number)($("#contents").css("top").replace("px",""))
+
+    isClick = false;
     var ratioM;
     var ratioP;
     if(gap>=0)
@@ -78,35 +91,24 @@ $('#drag-bar').on('touchend',function(e)
     }
 
     if(maxTop <= top && top <= stageHeight*ratioP)
-    {
-        setAnimationAuto(-1);
-    }
-    else
-    {        
-        setAnimationAuto(1);
-    }
-});
-
-function setAnimationAuto(vec)
-{
-    if(vec < 0)
-    {
+    {   
         $("#contents").animate({
             "top" : maxTop + "px"
         },100);
     }
     else
-    {
+    {        
         $("#contents").animate({
             "top" : minTop + "px"
         }, 100, function()
         {
             $('#content').scrollTop(0);
+            $('body').css('overflow','auto');
         });
     }
 }
 
-$(document).on('touchstart touchmove touchend','#content body',function(e)
+$(document).on('touchstart touchmove touchend click','#content',function(e)
 {
     e.stopPropagation();
 });
