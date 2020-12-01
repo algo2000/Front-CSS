@@ -42,7 +42,6 @@ $(document).on('touchstart','#contents',function(e)
 
 $(document).on('touchmove','#contents',function(e)
 {
-    console.log($('#contents').scrollTop());
     if(isTouch)
     {
         movePos = e.originalEvent.touches[0].clientY;
@@ -89,22 +88,26 @@ function setAnimationAuto()
         ratioM = 0.2;
         ratioP = 1 - ratioM;
     }
-
+    $("#contents").css('transition','0.5s');
     if(maxTop <= top && top <= stageHeight*ratioP)
     {   
-        $("#contents").animate({
-            "top" : maxTop + "px"
-        },100);
+        // $("#contents").animate({
+        //     "top" : maxTop + "px"
+        // },100);
+        $("#contents").css('top',maxTop+'px');
     }
     else
     {        
-        $("#contents").animate({
-            "top" : minTop + "px"
-        }, 100, function()
-        {
-            $('#content').scrollTop(0);
-            $('body').css('overflow','auto');
-        });
+        // $("#contents").animate({
+        //     "top" : minTop + "px"
+        // }, 100, function()
+        // {
+        //     $('#content').scrollTop(0);
+        //     $('body').css('overflow','auto');
+        // });
+        $("#contents").css('top',minTop+'px');
+        $('#content').scrollTop(0);
+        $('body').css('overflow','auto');
     }
 }
 
