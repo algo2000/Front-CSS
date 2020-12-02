@@ -6,134 +6,150 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
         <title>Sheep</title>
         <link rel="stylesheet" type="text/css" href="../css/style.css">
+        <link rel="stylesheet" type="text/css" href="../css/logo.css">
         <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
         <script type="module" src="../js/app.js"></script>
         <style>
-            body
+            #home-box
             {
-                background-color: rgb(24, 24, 24);
-                color: white;
+                position:absolute;
+                transform: translate(-50%,0%);
+                top: 20%;
+                left: 50%;
+                width: 80%;
+                height: 300px;
+                max-width: 350px;
+                min-width: 250px;
             }
-            button
+            #logo-box
             {
-                width: 150px;
-                height: 100px;
+                margin: auto;
+                width: 142px;
             }
-        </style>
-        <style>
-            #contents
-            {
-                color: white;
-                top: 94%;
-                position: fixed;
-                background-color: rgb(36, 36, 36);
-                opacity: 92%;
-                width: 100%;
-                height: 100%;
-                border-radius: 20px 20px 0px 0px;
-                backdrop-filter: blur(10px);
-                -webkit-backdrop-filter: blur(10px);
-            }
-
-            #content
-            {
-                overflow-y: auto;
-                height: 90%;
-                padding: 0px 5%;
-            }
-
-            #drag-bar
-            {
-                margin-top: 10px;
-                margin-bottom: 20px;
-                text-align: center;
-            }
-            .cartoon
+            #search-tag-box
             {
                 width: 100%;
-                height: 400px;
-                background-color: rgb(22, 22, 22);
-                border-radius: 20px;
-                margin: 30px 0px;
+                border: none;
+                background-color: rgb(48, 48, 48);
+                border-radius: 10px;
+                margin-top: 30px;
             }
-            .image-box
+            #search-input
             {
-                border-radius: 20px 20px 0px 0px;
-                height: 200px;
-                width: 100%;
+                font-size: 18px;
+                padding: 20px 5%;
+                background-color: rgb(48, 48, 48);
+                border: none;
+                border-radius: 10px;
+            }
+            #tag-box
+            {
+                width: 90%;
+                padding: 10px 5%;
+            }
+            .tag
+            {
+                background-color: rgb(252, 97, 97);
+                display: inline-block;
+                height: 26px;
+                margin: 3px 4px;
+                line-height: 24px;
                 overflow: hidden;
-                background-color: black;
-                text-align: center;
+                padding: 0px 8px;
+                border-radius: 15px;
             }
-            .image
+            .tag *
             {
-                height: 100%;
+                display: inline-block;
+            }
+            .tag-close
+            {
+                margin-left: 10px;
+                vertical-align: middle;
+                cursor: pointer;
+            }
+            #search-box
+            {
+                display: grid;
+                grid-template-columns: auto 20px;
+                align-items: center;
+                padding: 0px 20px
+            }
+            #search-btn
+            {
+                cursor: pointer;
+            }
+            #auto-complete
+            {
+                background-color: rgb(48, 48, 48);
+                padding: 0px 20px 10px 20px;
+                border-radius: 0px 0px 10px 10px;
+            }
+            .auto-element
+            {
+                padding:10px 10px;
+                height: 18px;
+                cursor: pointer;
+                overflow: hidden;
             }
         </style>
     </head>
     <body>
-        <!-- asdfasdfsadfsdafsdfsd<br>
-        sdfasdfsadf<br>
-        asdfasdfsadfsdafsdfsd<br>
-        asdfasdfsadfsdafsdfsd<br>
-        sdfasdfsadf<br>
-        asdfasdfsadfsdafsdfsd<br>asdfasdfsadfsdafsdfsd<br>
-        sdfasdfsadf<br>
-        asdfasdfsadfsdafsdfsd<br>asdfasdfsadfsdafsdfsd<br>
-        sdfasdfsadf<br>
-        asdfasdfsadfsdafsdfsd<br>asdfasdfsadfsdafsdfsd<br>
-        sdfasdfsadf<br>
-        asdfasdfsadfsdafsdfsd<br>asdfasdfsadfsdafsdfsd<br>
-        sdfasdfsadf<br>
-        asdfasdfsadfsdafsdfsd<br>asdfasdfsadfsdafsdfsd<br>
-        sdfasdfsadf<br>
-        asdfasdfsadfsdafsdfsd<br>asdfasdfsadfsdafsdfsd<br>
-        sdfasdfsadf<br>
-        asdfasdfsadfsdafsdfsd<br>
-        asdfasdfsadfsdafsdfsd<br>
-        sdfasdfsadf<br>
-        asdfasdfsadfsdafsdfsd<br>asdfasdfsadfsdafsdfsd<br>
-        sdfasdfsadf<br>
-        asdfasdfsadfsdafsdfsd<br>asdfasdfsadfsdafsdfsd<br>
-        sdfasdfsadf<br>
-        asdfasdfsadfsdafsdfsd<br>asdfasdfsadfsdafsdfsd<br>
-        sdfasdfsadf<br>
-        asdfasdfsadfsdafsdfsd<br>asdfasdfsadfsdafsdfsd<br>
-        sdfasdfsadf<br>
-        asdfasdfsadfsdafsdfsd<br>asdfasdfsadfsdafsdfsd<br>
-        sdfasdfsadf<br>
-        asdfasdfsadfsdafsdfsd<br>asdfasdfsadfsdafsdfsd<br>
-        sdfasdfsadf<br>
-        asdfasdfsadfsdafsdfsd<br>asdfasdfsadfsdafsdfsd<br>
-        sdfasdfsadf<br>
-        asdfasdfsadfsdafsdfsd<br>asdfasdfsadfsdafsdfsd<br>
-        sdfasdfsadf<br>
-        asdfasdfsadfsdafsdfsd<br>
-        asdfasdfsadfsdafsdfsd<br>asdfasdfsadfsdafsdfsd<br>
-        sdfasdfsadf<br>
-        asdfasdfsadfsdafsdfsd<br> -->
-        <div id="contents">
-            <div id="drag-bar">
-                <svg id="bar-svg" xmlns="http://www.w3.org/2000/svg" width="50" height="6" viewBox="0 0 50 6">
-                    <rect width="50" height="6" rx="3" fill="#aaa"/>
+        <div id="home-box">
+            <div id="logo-box">
+                <svg id="logo" xmlns="http://www.w3.org/2000/svg" width="140.764" height="37.7" viewBox="0 0 108.28 29">
+                    <g transform="translate(-1425.72 -352)">
+                      <path id="manga-text" d="M1.72-.84H3.2V-12.18h.06L7.14-.84H8.62l3.92-11.34h.06V-.84h1.6V-14.26H11.86L8-2.92H7.96L4.08-14.26H1.72ZM19.8-.66A3.264,3.264,0,0,0,22.44-1.7h.1l.16.86h1.24V-8.02c0-2.02-1.22-2.92-3.4-2.92a7.518,7.518,0,0,0-2.96.54v1.1a8.4,8.4,0,0,1,2.36-.32c1.78,0,2.46.4,2.46,1.94v1.04l-2.68.32c-1.9.22-3.02,1.14-3.02,2.88C16.7-1.58,18-.66,19.8-.66Zm.38-1.2c-1.14,0-1.88-.54-1.88-1.62,0-1.14.6-1.64,1.82-1.76L22.4-5.5v2.92A3.344,3.344,0,0,1,20.18-1.86ZM26.82-.84h1.52V-8.9a7.076,7.076,0,0,1,2.8-.72c1.58,0,2,.5,2,1.7V-.84h1.52v-7.4c0-1.92-.94-2.7-2.88-2.7A6.561,6.561,0,0,0,28.36-9.9h-.08v-.86H26.82ZM41,2.1c3.38,0,4.74-1.34,4.74-3.04,0-1.84-1.34-2.38-3.14-2.38H39.86c-.66,0-.98-.2-.98-.74a1.117,1.117,0,0,1,.46-.8,5.136,5.136,0,0,0,1.7.28c2.08,0,3.72-1.06,3.72-3.18v-.02a2.407,2.407,0,0,0-.72-1.82h1.78v-1.18H42.46a6.25,6.25,0,0,0-1.4-.16c-2.18,0-3.74,1.14-3.74,3.2v.04a2.777,2.777,0,0,0,1.24,2.48c-.76.56-1.12,1.02-1.12,1.64a1.268,1.268,0,0,0,1,1.24v.1c-1.02.34-1.88.96-1.88,2.02C36.56,1.22,37.98,2.1,41,2.1ZM40.96.9C39,.9,38.16.46,38.16-.42c0-.84.58-1.28,1.34-1.54h2.86c1.3,0,1.78.3,1.78,1.22C44.14.3,43.3.9,40.96.9Zm.08-6.68c-1.32,0-2.2-.64-2.2-1.94v-.1c0-1.24.84-1.96,2.2-1.96,1.34,0,2.18.62,2.18,1.98v.1C43.22-6.42,42.42-5.78,41.04-5.78ZM50.08-.66A3.264,3.264,0,0,0,52.72-1.7h.1l.16.86h1.24V-8.02c0-2.02-1.22-2.92-3.4-2.92a7.518,7.518,0,0,0-2.96.54v1.1a8.4,8.4,0,0,1,2.36-.32c1.78,0,2.46.4,2.46,1.94v1.04L50-6.32c-1.9.22-3.02,1.14-3.02,2.88C46.98-1.58,48.28-.66,50.08-.66Zm.38-1.2c-1.14,0-1.88-.54-1.88-1.62,0-1.14.6-1.64,1.82-1.76l2.28-.26v2.92A3.344,3.344,0,0,1,50.46-1.86Z" transform="translate(1424 373)" fill="#f0f0f0"/>
+                      <rect id="hub-rect" width="49" height="29" rx="10" transform="translate(1485 352)" fill="#f4f4f4"/>
+                      <path id="hub-text" d="M1.72-.84h1.6V-7.1h6.72V-.84h1.58V-14.26H10.04v5.82H3.32v-5.82H1.72ZM17.8-.66a5.563,5.563,0,0,0,3.16-1.08h.08l.14.9H22.5v-9.92H20.98v8a6.169,6.169,0,0,1-2.76.78c-1.46,0-1.92-.52-1.92-1.8v-6.98H14.76v7.2C14.76-1.64,15.86-.66,17.8-.66Zm11.24.04c3.2,0,4.94-1.88,4.94-5.2v-.26c0-3.72-1.96-4.86-3.86-4.86a5.622,5.622,0,0,0-3.06.84h-.1v-5.06H25.42v14A11.871,11.871,0,0,0,29.04-.62Zm.08-1.28a5.481,5.481,0,0,1-2.16-.36V-9a5.989,5.989,0,0,1,2.46-.64c2,0,2.96.9,2.96,3.66v.4C32.38-2.74,30.9-1.9,29.12-1.9Z" transform="translate(1492 373)" fill="#ffb833"/>
+                    </g>
                 </svg>
             </div>
-            <div id="content">
-                <div class="cartoon">
-                    <div class="image-box">
-                        <img class="image" src="../image/image.png">
+            <div id="search-tag-box">
+                <div id="search-box">
+                    <input id="search-input" type="text" placeholder="search">
+                    <svg id="search-btn" xmlns="http://www.w3.org/2000/svg" width="18.854" height="19.854" viewBox="0 0 18.854 19.854">
+                        <g transform="translate(-357 59)">
+                            <line x2="4" y2="4" transform="translate(371.5 -43.5)" fill="none" stroke="#fff" stroke-width="1"/>
+                            <circle cx="9" cy="9" r="8.5" transform="translate(357 -59)" fill="none" stroke="#fff" stroke-width="1"/>
+                        </g>
+                    </svg>            
+                </div>
+                <div id="tag-box">
+                    <div class="tag">
+                        <div class="tag-text">
+                            female:testtesttest
+                        </div>
+                        <div class="tag-close">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="9" height="11" viewBox="0 0 5.829 7.558">
+                                <g transform="translate(0.406 0.292)">
+                                <line x1="5.017" y2="6.974" fill="none" stroke="#efefef" stroke-width="1"/>
+                                <line x2="5.017" y2="6.974" fill="none" stroke="#efefef" stroke-width="1"/>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="tag">
+                        <div class="tag-text">
+                            female:testtesttest
+                        </div>
+                        <div class="tag-close">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="9" height="11" viewBox="0 0 5.829 7.558">
+                                <g transform="translate(0.406 0.292)">
+                                <line x1="5.017" y2="6.974" fill="none" stroke="#efefef" stroke-width="1"/>
+                                <line x2="5.017" y2="6.974" fill="none" stroke="#efefef" stroke-width="1"/>
+                                </g>
+                            </svg>
+                        </div>
                     </div>
                 </div>
-                <div class="cartoon">
-                    <div class="image-box">
-                        <img class="image" src="../image/image.png">
-                    </div>
-                </div>
-                <div class="cartoon">
-                    <div class="image-box">
-                        <img class="image" src="../image/image.png">
-                    </div>
-                </div>
+            </div>
+            <div id="auto-complete">
+                <p class="auto-element">TAG:AAAABC</p>
+                <p class="auto-element">ARTIST:BBBBCD</p>
+                <p class="auto-element">LANGUAGE:KOREAN</p>
+                <p class="auto-element">LANGUAGE:ENGLISH</p>
+                <p class="auto-element">CHARACTER:JAE</p>
             </div>
         </div>
     </body>
