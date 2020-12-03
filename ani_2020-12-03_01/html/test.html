@@ -111,6 +111,12 @@
         slideShadows: true,
       }
     });
+
+    $('#search-btn').on('click',function(e)
+    {
+        e.preventDefault();
+        swiper.slideTo(1, 0);
+    });
   </script>
 </body>
 
