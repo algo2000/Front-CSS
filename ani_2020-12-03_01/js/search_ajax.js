@@ -31,13 +31,13 @@ $(document).on("focusin propertychange paste input","#search-input",function(){
     }
 
     let result = [];
-    const regex = new RegExp('^[0-9a-zA-Z]([0-9a-zA-Z])*:'+text, 'gi');
+    const regex = new RegExp('^[0-9a-zA-Z]([0-9a-zA-Z])*:'+currentVal, 'gi');
     for(let i = 0; i<json.length;i++)
     {
         if(json[i].search(regex)!=-1)
         {
             result.push(json[i]);
-            if(result.length == 5)
+            if(result.length == 8)
             {
                 break;
             }
