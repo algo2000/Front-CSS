@@ -21,19 +21,21 @@
     background-color: rgb(48, 48, 48);
     border-radius: 10px;
     margin-top: 30px;
+    padding: 10px 0px;
 }
 #search-input
 {
     font-size: 18px;
-    padding: 20px 5%;
+    padding: 10px 5%;
     background-color: rgb(48, 48, 48);
     border: none;
     border-radius: 10px;
+    max-width: 290px;
 }
 #tag-box
 {
     width: 90%;
-    padding: 10px 5%;
+    padding: 0px 5%;
 }
 .tag
 {
@@ -70,8 +72,9 @@
 #auto-complete
 {
     background-color: rgb(48, 48, 48);
-    padding: 0px 20px 10px 20px;
+    /*padding: 0px 20px 10px 20px;*/
     border-radius: 0px 0px 10px 10px;
+    overflow: hidden;
 }
 .auto-element
 {

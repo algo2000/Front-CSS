@@ -6,3 +6,9 @@
 {
     fill: rgb(183, 188, 255);
 }
+#logo
+{
+    cursor: pointer;
+    display: block;
+    margin: auto;
+}
