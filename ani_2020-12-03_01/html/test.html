@@ -4,7 +4,10 @@
 <head>
   <meta charset="utf-8">
   <!-- Link Swiper's CSS -->
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
     <meta charset="UTF-8">
@@ -19,6 +22,8 @@
     <script type="module" src="../js/auto_complete_click.js"></script>
     <script type="module" src="../js/delete_tag.js"></script>
     <script type="module" src="../js/search_ajax.js"></script>
+    <script type="module" src="../js_test/init.js"></script>
+    <script src="../js_test/app.js"></script>
   <!-- Demo styles -->
   <style>
     html,
@@ -203,7 +208,7 @@
     </div>
   </div>
   <!-- Initialize Swiper -->
-  <script>
+  <!-- <script>
     // var swiper = new Swiper('.swiper-container');
     var swiper = new Swiper('.swiper-container', {
       effect: 'coverflow',
@@ -224,6 +229,6 @@
         e.preventDefault();
         swiper.slideTo(1, 0);
     });
-  </script>
+  </script> -->
 </body>
 </html>
