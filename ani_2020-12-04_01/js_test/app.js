@@ -2,6 +2,7 @@ class App
 {
     constructor()
     {
+        
     }
 
     get slides()
