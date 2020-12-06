@@ -15,11 +15,11 @@ $(document).ready(function(){
       });
     
       App.init(swiper);
-      App.emptySlide(2,true);
-      console.log(App.slides);
-      App.emptySlide(1,true);
+    //   App.emptySlide(2,true);
+    //   console.log(App.slides);
+    //   App.emptySlide(1,true);
 
-      App.setPage(1,"asdfasdfasd");
-      App.setPage(2,"asdfasdfasl,ld");
+    //   App.setPage(1,"asdfasdfasd");
+    //   App.setPage(2,"asdfasdfasl,ld");
 
 });
