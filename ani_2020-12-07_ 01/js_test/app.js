@@ -2,9 +2,11 @@ class App
 {
     constructor()
     {
-        
     }
-
+    get serverUrl()
+    {
+        return this.serverUrl;
+    }
     get slides()
     {
         return this.slides;
@@ -16,6 +18,7 @@ class App
 
     static init(swiper)
     {
+        this.serverUrl = "http://jotp3pe.ddns.net:8000";
         this.swiper = swiper;
     }
 
@@ -28,11 +31,33 @@ class App
     /**
      * 해당 레벨의 페이지를 새로 세팅
      * @param {int} pageLevel 페이지의 계층 레벨 (최상위 0 부터 ~ )
-     * @param {string} page 삽입하고자 하는 페이지
      */
-    static setPage(pageLevel, page)
+    static setPage(pageLevel)
     {
-        this.swiper.appendSlide('<div class="swiper-slide"> ' + page + '</div>');
+        var swiperSlideDiv;
+        if(pageLevel === 1)
+        {
+            swiperSlideDiv = $('<div/>',
+            {
+               class : 'swiper-slide',
+               id : 'js-2'
+            });
+            var cartoonListBoxDiv = $('<div/>');
+            cartoonListBoxDiv.attr('id','cartoon-list-box');
+            var contentsDiv = $('<div/>');
+            contentsDiv.attr('id','contents');
+
+            cartoonListBoxDiv.append(contentsDiv);
+            swiperSlideDiv.append(cartoonListBoxDiv);
+        }
+        this.swiper.appendSlide(swiperSlideDiv);
+
+    //     <div class="swiper-slide" id="js-2">
+    //     <div id="cartoon-list-box">
+    //       <div id="contents">
+    //       </div>
+    //     </div>
+    //   </div>
     }
 
     /**

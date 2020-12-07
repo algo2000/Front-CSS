@@ -1,7 +1,9 @@
 import {GalleryIdToInfo as galleryIdToInfo} from './galleryIdToInfo.js'
-$(document).on('click','#search-btn',function(){
+import {Create_cartoonList_style as createCartoonList} from './create_cartoonList_style.js'
+$(document).on('click','#search-btn',function(e){
     var aJson = new Object();
     var gii = new galleryIdToInfo();
+    var ccl = new createCartoonList();
     var galleryInfoJson;
     
     aJson["order"] = "date";
@@ -10,7 +12,7 @@ $(document).on('click','#search-btn',function(){
     var sJson = JSON.stringify(aJson);
 
     $.ajax({ 
-        url : "http://52.160.49.52:8000/search", 
+        url : App.serverUrl+"/search", 
         data : sJson, 
         traditional: true , 
         contentType:"application/json", 
@@ -18,15 +20,24 @@ $(document).on('click','#search-btn',function(){
         dataType:'JSON', 
         success:function(data)
         { 
+            App.emptySlide(1);
+            App.setPage(1);
+            console.log(sJson);
+            $('#cartoon-list-box > #contents').empty();
             Search_info.initIds(data['result']);
-            galleryInfoJson = gii.gallery_idsToInfo(Search_info.getNowIds());
-            console.log(galleryInfoJson);
-            for(var i = 0; i<galleryInfoJson['result'].length;i++)
+
+            for(var repeat = 0; repeat<3;repeat++)
             {
-                console.log($('.cartoon-images')[i]);
-                var $tempTag = "<img class='images' src='" + galleryInfoJson['result'][i]['thumbnail_url'] + "'>";
-                $($('.cartoon-images')[i]).append($tempTag);
+                galleryInfoJson = gii.gallery_idsToInfo(Search_info.getNowIds());
+                console.log(galleryInfoJson);
+                for(var i = 0; i<galleryInfoJson['result'].length;i++)
+                {
+                    var cartoon = ccl.createCartoonList(galleryInfoJson['result'][i]);
+                    $('#cartoon-list-box > #contents').append(cartoon);
+                }
             }
+            e.preventDefault();
+            App.swiper.slideTo(1, 0);
         },
         error:function()
         {

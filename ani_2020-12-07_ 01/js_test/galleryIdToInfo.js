@@ -17,7 +17,7 @@ export class GalleryIdToInfo
         aJson['gallery_ids'] = ids;
         var sJson = JSON.stringify(aJson);
         $.ajax({ 
-            url : "http://52.160.49.52:8000/get-gallery-metadata", 
+            url : App.serverUrl+"/get-gallery-metadata", 
             data : sJson, 
             traditional: true, 
             async: false,
@@ -52,7 +52,7 @@ export class GalleryIdToInfo
         aJson['url'] = url;
         var sJson = JSON.stringify(aJson);
         $.ajax({ 
-            url : "http://52.160.49.52:8000/image-url-to-base64", 
+            url : App.serverUrl+"/image-url-to-base64", 
             data : sJson, 
             traditional: true , 
             async: false,
