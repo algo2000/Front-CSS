@@ -6,6 +6,7 @@ class Search_info
         this.idLengh;
         this.nowPage = 0;
         this.nowIds = [];
+        this.isLoading = false;
     }
 
     static initIds(ids)
@@ -17,8 +18,9 @@ class Search_info
 
     static getNowIds()
     {
-        this.nowIds = this.ids.splice(this.nowPage*3,3);
+        this.nowIds = this.ids.slice(this.nowPage*3,this.nowPage*3+3);
         this.nowPage++;
+        this.isLoading = true;
         return this.nowIds;
     }
 }

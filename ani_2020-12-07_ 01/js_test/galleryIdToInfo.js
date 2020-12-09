@@ -1,3 +1,4 @@
+import {Create_cartoonList_style as createCartoonList} from './create_cartoonList_style.js'
 export class GalleryIdToInfo
 {
     constructor()
@@ -12,7 +13,6 @@ export class GalleryIdToInfo
     {  
         var aJson = new Object();
         var imgUrl = new Array();
-        var galleryInfo;
         aJson['gallery_ids'] = new Array();
         aJson['gallery_ids'] = ids;
         var sJson = JSON.stringify(aJson);
@@ -20,50 +20,71 @@ export class GalleryIdToInfo
             url : App.serverUrl+"/get-gallery-metadata", 
             data : sJson, 
             traditional: true, 
-            async: false,
             contentType:"application/json", 
             type : 'POST', 
             dataType:'JSON', 
-            success:function(data)
+            success:function(galleryInfo)
             {
-                galleryInfo = data;
                 for(var i = 0; i<galleryInfo['result'].length;i++) 
                 {
                     imgUrl.push(galleryInfo['result'][i]['thumbnail_url']);
                 }
+                var ccl = new createCartoonList();
+                var aJson = new Object();
+                aJson['url'] = new Array();
+                aJson['url'] = imgUrl;
+                var sJson = JSON.stringify(aJson);
+                $.ajax({ 
+                    url : App.serverUrl+"/image-url-to-base64", 
+                    data : sJson, 
+                    traditional: true , 
+                    contentType:"application/json", 
+                    type : 'POST', 
+                    dataType:'JSON', 
+                    success:function(imgUrl)
+                    {
+                        for(var i = 0; i<galleryInfo['result'].length;i++) 
+                        {
+                            galleryInfo['result'][i]['thumbnail_url'] = imgUrl[i];
+
+                            var cartoon = ccl.createCartoonList(galleryInfo['result'][i]);
+                            $('#cartoon-list-box > #contents').append(cartoon);
+                        }
+                    }
+                });
+                    // this.imageLinkToBase64(galleryInfo,imgUrl);
             }
         });
-        imgUrl = this.imageLinkToBase64(imgUrl);
-        for(var i = 0; i<galleryInfo['result'].length;i++) 
-        {
-            galleryInfo['result'][i]['thumbnail_url'] = imgUrl[i];
-        }
-        return galleryInfo;
     }
 
     /**
      * 이미지 링크로 부터 base64로 변환
      * @param {Array} url 이미지 링크가 담긴 배열
      */
-    imageLinkToBase64(url)
+    imageLinkToBase64(galleryInfo,imgUrl)
     {
+        var ccl = new createCartoonList();
         var aJson = new Object();
         aJson['url'] = new Array();
-        aJson['url'] = url;
+        aJson['url'] = imgUrl;
         var sJson = JSON.stringify(aJson);
         $.ajax({ 
             url : App.serverUrl+"/image-url-to-base64", 
             data : sJson, 
             traditional: true , 
-            async: false,
             contentType:"application/json", 
             type : 'POST', 
             dataType:'JSON', 
-            success:function(data)
-            { 
-                url = data;
+            success:function(imgUrl)
+            {
+                for(var i = 0; i<galleryInfo['result'].length;i++) 
+                {
+                    galleryInfo['result'][i]['thumbnail_url'] = imgUrl[i];
+
+                    var cartoon = ccl.createCartoonList(galleryInfo['result'][i]);
+                    $('#cartoon-list-box > #contents').append(cartoon);
+                }
             }
         });
-        return url;
     }
 }

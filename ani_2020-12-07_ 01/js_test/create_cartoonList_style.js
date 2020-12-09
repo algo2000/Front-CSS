@@ -5,11 +5,6 @@ export class Create_cartoonList_style
     {
         var cartoonBoxDiv = $('<div/>');
         cartoonBoxDiv.addClass('cartoon-box');
-        
-        var gallery_id = $('<div/>').css('display','none');
-        gallery_id.html(json['gallery_id']);
-
-        cartoonBoxDiv.append(gallery_id);
 
         var cartoonTitleA = $('<a/>');
         cartoonTitleA.addClass('cartoon-title');
@@ -22,6 +17,11 @@ export class Create_cartoonList_style
 
         var cartoonImagesDiv = $('<div/>');
         cartoonImagesDiv.addClass('cartoon-images');
+
+        var gallery_id = $('<div/>').css('display','none');
+        gallery_id.html(json['gallery_id']);
+
+        cartoonImagesDiv.append(gallery_id);
 
         var imagesImg = $('<img/>');
         imagesImg.addClass('images');

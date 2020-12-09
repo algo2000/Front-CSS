@@ -50,6 +50,15 @@ class App
             cartoonListBoxDiv.append(contentsDiv);
             swiperSlideDiv.append(cartoonListBoxDiv);
         }
+        if(pageLevel === 2)
+        {
+            swiperSlideDiv = $('<div/>',
+            {
+               class : 'swiper-slide',
+               id : 'js-3'
+            });
+            // <!-- <div class="swiper-slide" id="js-3">만화 상세 뷰</div> -->
+        }
         this.swiper.appendSlide(swiperSlideDiv);
 
     //     <div class="swiper-slide" id="js-2">
