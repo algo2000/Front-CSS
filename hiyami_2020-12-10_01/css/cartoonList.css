@@ -1,0 +1,89 @@
+#contents
+{
+    margin: 0px 10px;
+    height: 100%;
+    max-width: 340px;
+    margin: auto;
+}
+.cartoon-box
+{
+    border: solid 1px gray;
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
+.cartoon-title
+{
+    line-height: 25px;
+    height: 25px;
+    padding : 0px 10px;
+    display: inline-block;
+}
+.cartoon-contents-box
+{
+    border-radius: 10px;
+    background-color: rgb(112, 112, 112);
+}
+.cartoon-artist
+{
+    line-height: 25px;
+    height: 25px;
+    padding : 0px 10px;
+    display: inline-block;
+}
+.cartoon-page
+{
+    line-height: 25px;
+    height: 25px;
+    padding : 0px 10px;
+    display: inline-block;  
+}
+.cartoon-images
+{
+    height: 250px;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: black;
+    position: relative;
+}
+.images
+{
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,0%);
+    display: inline;
+    height: 100%;
+}
+.cartoon-table
+{
+    margin: 0px 10px;
+}
+.cartoon-table td
+{
+    padding: 7px 0px;
+}
+.cartoon-table tr td:nth-child(1)
+{
+    padding-right: 10px;
+}
+.tags
+{
+    display: inline-block;
+
+    margin-left: 2px;
+    margin-top: 2px;
+    cursor: pointer;
+}
+.tags a
+{
+    font-size: 10px;
+    padding: 2px 5px;
+    border-radius: 10px;
+}
+.female-tags a
+{
+    background-color: rgb(255, 74, 74);
+}
+.male-tags a
+{
+    background-color: rgb(74, 131, 255);
+}
