@@ -18,7 +18,7 @@ class App
 
     static init(swiper)
     {
-        this.serverUrl = "https://jotp3pe.ddns.net:8000";
+        this.serverUrl = "http://jotp3pe.ddns.net:8000";
         this.swiper = swiper;
     }
 
@@ -27,7 +27,7 @@ class App
         this.slides = $('.swiper-slide');
         this.slideLength = this.slides.length;
     }
-
+    
     /**
      * 해당 레벨의 페이지를 새로 세팅
      * @param {int} pageLevel 페이지의 계층 레벨 (최상위 0 부터 ~ )

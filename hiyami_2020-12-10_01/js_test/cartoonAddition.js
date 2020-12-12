@@ -20,7 +20,7 @@ $(document).on('click','.cartoon-images', (e) =>
     var aJson = new Object();
     aJson['gallery_id'] = $(e.target.offsetParent.children[0]).text();
     var sJson = JSON.stringify(aJson);
-    console.log(sJson);
+    var test;
     $.ajax({ 
         url : App.serverUrl+"/get-gallery-url", 
         data : sJson, 
@@ -30,63 +30,76 @@ $(document).on('click','.cartoon-images', (e) =>
         dataType:'JSON', 
         success:function(data)
         {
-            var test = new Array();
-            test = data;
-            console.log(test);
             App.emptySlide(2);
             App.setPage(2);
             var page = 0;
-            for(var repeat = 0; repeat < (data.length/3)+1; repeat++)
+
+            // var imgMap = new Map();
+            // for(var value = 0; value < data.length; value++)
+            // {
+            //     imgMap.set(data[value], value);
+
+            //     var imgDiv = $('<div/>');
+            //     imgDiv.attr('id',value);
+            //     $('#js-3').append(imgDiv);
+            //     console.log(imgDiv);
+            // }
+            for(var i = 0; i<data.length; i++)
             {
-                // imageLinkToBase64(data.slice(page,page+3));
                 var aJson = new Object();
-                aJson['url'] = new Array();
-                aJson['url'] = data.slice(page,page+3);
-                page = page+3;
+                aJson['url'] = data[i];
                 var sJson = JSON.stringify(aJson);
-                console.log(sJson);
                 $.ajax({ 
-                    url : App.serverUrl+"/image-url-to-base64", 
+                    url : App.serverUrl+"/get-url-data", 
                     data : sJson, 
                     traditional: true ,
-                    contentType:"application/json", 
+                    contentType:"application/json; charset=utf-8'", 
                     type : 'POST', 
-                    dataType:'JSON', 
+                    beforeSend:function()
+                    {
+                        test = sJson;
+                    },
                     success:function(imgs)
                     { 
-                        for(var i = 0; i<imgs.length;i++)
-                        {
-                            $('#js-3').append("<img src='"+imgs[i]+"'/>");
-                        }
+                        console.log(imgs);
+                        // for(var i = 0; i<imgs.length;i++)
+                        // {
+                        //     $('#js-3').append("<img src='"+imgs[i]+"'/>");
+                        // }
                     }
                 });
             }
+
+            // for(var repeat = 0; repeat < (data.length/3)+1; repeat++)
+            // {
+            //     // imageLinkToBase64(data.slice(page,page+3));
+            //     var aJson = new Object();
+            //     aJson['url'] = new Array();
+            //     aJson['url'] = data.slice(page,page+3);
+            //     page = page+3;
+            //     var sJson = JSON.stringify(aJson);
+            //     $.ajax({ 
+            //         url : App.serverUrl+"/image-url-to-base64", 
+            //         data : sJson, 
+            //         traditional: true ,
+            //         contentType:"application/json", 
+            //         type : 'POST', 
+            //         dataType:'JSON', 
+            //         beforeSend:function()
+            //         {
+            //             test = sJson;
+            //         },
+            //         success:function(imgs)
+            //         { 
+            //             console.log(test);
+            //             for(var i = 0; i<imgs.length;i++)
+            //             {
+            //                 $('#js-3').append("<img src='"+imgs[i]+"'/>");
+            //             }
+            //         }
+            //     });
+            // }
             console.log(data.length);
         }
     });
 });
-
-function imageLinkToBase64(url)
-{
-    var aJson = new Object();
-    aJson['url'] = new Array();
-    aJson['url'] = url;
-    var sJson = JSON.stringify(aJson);
-    console.log(sJson);
-    $.ajax({ 
-        url : App.serverUrl+"/image-url-to-base64", 
-        data : sJson, 
-        traditional: true ,
-        contentType:"application/json", 
-        type : 'POST', 
-        dataType:'JSON', 
-        success:function(imgs)
-        { 
-            page = page+3;
-            for(var i = 0; i<imgs.length;i++)
-            {
-                $('#js-3').append("<img src='"+imgs[i]+"'/>");
-            }
-        }
-    });
-}

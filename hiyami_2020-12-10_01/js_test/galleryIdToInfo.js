@@ -35,6 +35,7 @@ export class GalleryIdToInfo
                 aJson['url'] = imgUrl;
                 var sJson = JSON.stringify(aJson);
                 $.ajax({ 
+                    url : App.serverUrl+"/get-url-data", 
                     url : App.serverUrl+"/image-url-to-base64", 
                     data : sJson, 
                     traditional: true , 
@@ -48,42 +49,13 @@ export class GalleryIdToInfo
                             galleryInfo['result'][i]['thumbnail_url'] = imgUrl[i];
 
                             var cartoon = ccl.createCartoonList(galleryInfo['result'][i]);
-                            $('#cartoon-list-box > #contents').append(cartoon);
+                            $($('#cartoon-list-box > #contents > .loader')[0]).after(cartoon);
+                            $($('#cartoon-list-box > #contents > .loader')[0]).remove();
+                            // $('#cartoon-list-box > #contents').append(ccl.createCartoonLoading());
+                            //$($('#cartoon-list-box > #contents > .loader')[0]).empty();
                         }
                     }
                 });
-                    // this.imageLinkToBase64(galleryInfo,imgUrl);
-            }
-        });
-    }
-
-    /**
-     * 이미지 링크로 부터 base64로 변환
-     * @param {Array} url 이미지 링크가 담긴 배열
-     */
-    imageLinkToBase64(galleryInfo,imgUrl)
-    {
-        var ccl = new createCartoonList();
-        var aJson = new Object();
-        aJson['url'] = new Array();
-        aJson['url'] = imgUrl;
-        var sJson = JSON.stringify(aJson);
-        $.ajax({ 
-            url : App.serverUrl+"/image-url-to-base64", 
-            data : sJson, 
-            traditional: true , 
-            contentType:"application/json", 
-            type : 'POST', 
-            dataType:'JSON', 
-            success:function(imgUrl)
-            {
-                for(var i = 0; i<galleryInfo['result'].length;i++) 
-                {
-                    galleryInfo['result'][i]['thumbnail_url'] = imgUrl[i];
-
-                    var cartoon = ccl.createCartoonList(galleryInfo['result'][i]);
-                    $('#cartoon-list-box > #contents').append(cartoon);
-                }
             }
         });
     }

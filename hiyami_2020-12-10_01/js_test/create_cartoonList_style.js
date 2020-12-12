@@ -95,6 +95,33 @@ export class Create_cartoonList_style
 
         return cartoonBoxDiv;
     }
+
+    createCartoonLoading()
+    {
+        // <div class="loader">
+        //     <div class="loading">
+        // </div>
+
+        var loaderDiv = $('<div/>');
+        loaderDiv.addClass('loader');
+
+        var loadingDiv = $('<div/>');
+        loadingDiv.addClass('loading');
+
+        loaderDiv.append(loadingDiv);
+
+        return loaderDiv;
+    }
+
+    createCartoonImg(key)
+    {
+        var keyDiv = $('<div/>');
+        keyDiv.attr({
+            class : 'cartoon',
+            id : key
+        });
+        return keyDiv;
+    }
 }
 
 /* <div class="cartoon-box">

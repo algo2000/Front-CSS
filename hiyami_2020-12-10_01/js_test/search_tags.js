@@ -1,12 +1,19 @@
 import {GalleryIdToInfo as galleryIdToInfo} from './galleryIdToInfo.js'
+import {Create_cartoonList_style as createCartoonList} from './create_cartoonList_style.js'
 $(document).on('click','#search-btn',function(e){
     var aJson = new Object();
     var gii = new galleryIdToInfo();
+    var ccl = new createCartoonList();
     
     aJson["order"] = "date";
     aJson.search_tags=input_tag('.tag-text');
     aJson.exclude_tags = new Object();
     var sJson = JSON.stringify(aJson);
+
+    App.emptySlide(1);
+    App.setPage(1);
+    e.preventDefault();
+    App.swiper.slideTo(1, 0);
 
     $.ajax({ 
         url : App.serverUrl+"/search", 
@@ -17,18 +24,24 @@ $(document).on('click','#search-btn',function(e){
         dataType:'JSON', 
         success:function(data)
         { 
-            App.emptySlide(1);
-            App.setPage(1);
-            console.log(sJson);
             $('#cartoon-list-box > #contents').empty();
             Search_info.initIds(data['result']);
 
-            gii.gallery_idsToInfo(Search_info.getNowIds());
-            Search_info.isLoading = false;
+            for(var i = 0; i < 10; i++)
+            {
+                var nowToonCount = Search_info.getNowIds();
+                for(var j = 0; j < 3; j++)
+                {
+                    $('#cartoon-list-box > #contents').append(ccl.createCartoonLoading());
+                }
+                gii.gallery_idsToInfo(nowToonCount);
+            }
         },
         error:function()
         {
             alert("Search failed");
+            App.emptySlide(1);
+            App.swiper.slideTo(0, 0);
         }
     });
 });
