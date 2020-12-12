@@ -29,6 +29,7 @@ $(document).on('click','#search-btn',function(e){
 
             for(var i = 0; i < 10; i++)
             {
+                Search_info.isLoading = true;
                 var nowToonCount = Search_info.getNowIds();
                 for(var j = 0; j < 3; j++)
                 {

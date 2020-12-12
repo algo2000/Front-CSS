@@ -113,14 +113,18 @@ export class Create_cartoonList_style
         return loaderDiv;
     }
 
-    createCartoonImg(key)
+    createCartoonImgLoading()
     {
-        var keyDiv = $('<div/>');
-        keyDiv.attr({
-            class : 'cartoon',
-            id : key
-        });
-        return keyDiv;
+        var loaderDiv = $('<div/>');
+        loaderDiv.addClass('loader');
+        loaderDiv.addClass('loader-img');
+
+        var loadingDiv = $('<div/>');
+        loadingDiv.addClass('loading');
+
+        loaderDiv.append(loadingDiv);
+
+        return loaderDiv;
     }
 }
 

@@ -49,11 +49,13 @@ export class GalleryIdToInfo
                             galleryInfo['result'][i]['thumbnail_url'] = imgUrl[i];
 
                             var cartoon = ccl.createCartoonList(galleryInfo['result'][i]);
+                            console.log(cartoon);
                             $($('#cartoon-list-box > #contents > .loader')[0]).after(cartoon);
                             $($('#cartoon-list-box > #contents > .loader')[0]).remove();
                             // $('#cartoon-list-box > #contents').append(ccl.createCartoonLoading());
                             //$($('#cartoon-list-box > #contents > .loader')[0]).empty();
                         }
+                        Search_info.isLoading = false;
                     }
                 });
             }

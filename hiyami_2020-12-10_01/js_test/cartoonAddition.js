@@ -9,8 +9,11 @@ $(document).on('scroll',function(e){
     if(scrollT + scrollH +1 >= contentH) { // 스크롤바가 아래 쪽에 위치할 때
         if(!Search_info.isLoading)
         {
+            for(var j = 0; j < 3; j++)
+            {
+                $('#cartoon-list-box > #contents').append(ccl.createCartoonLoading());
+            }
             gii.gallery_idsToInfo(Search_info.getNowIds());
-            Search_info.isLoading = false;
         }
     }
 });
@@ -20,7 +23,7 @@ $(document).on('click','.cartoon-images', (e) =>
     var aJson = new Object();
     aJson['gallery_id'] = $(e.target.offsetParent.children[0]).text();
     var sJson = JSON.stringify(aJson);
-    var test;
+    var ccl = new createCartoonList();
     $.ajax({ 
         url : App.serverUrl+"/get-gallery-url", 
         data : sJson, 
@@ -32,74 +35,50 @@ $(document).on('click','.cartoon-images', (e) =>
         {
             App.emptySlide(2);
             App.setPage(2);
-            var page = 0;
 
-            // var imgMap = new Map();
-            // for(var value = 0; value < data.length; value++)
-            // {
-            //     imgMap.set(data[value], value);
-
-            //     var imgDiv = $('<div/>');
-            //     imgDiv.attr('id',value);
-            //     $('#js-3').append(imgDiv);
-            //     console.log(imgDiv);
-            // }
-            for(var i = 0; i<data.length; i++)
+            var imgMap = new Map();
+            for(var value = 0; value < data.length; value++)
             {
-                var aJson = new Object();
-                aJson['url'] = data[i];
-                var sJson = JSON.stringify(aJson);
-                $.ajax({ 
-                    url : App.serverUrl+"/get-url-data", 
-                    data : sJson, 
-                    traditional: true ,
-                    contentType:"application/json; charset=utf-8'", 
-                    type : 'POST', 
-                    beforeSend:function()
-                    {
-                        test = sJson;
-                    },
-                    success:function(imgs)
-                    { 
-                        console.log(imgs);
-                        // for(var i = 0; i<imgs.length;i++)
-                        // {
-                        //     $('#js-3').append("<img src='"+imgs[i]+"'/>");
-                        // }
-                    }
-                });
+                imgMap.set(data[value], value);
+
+                var imgDiv = $('<div/>');
+                imgDiv.attr('id',value);
+                imgDiv.append(ccl.createCartoonImgLoading());
+                $('#js-3').append(imgDiv);
             }
 
-            // for(var repeat = 0; repeat < (data.length/3)+1; repeat++)
-            // {
-            //     // imageLinkToBase64(data.slice(page,page+3));
-            //     var aJson = new Object();
-            //     aJson['url'] = new Array();
-            //     aJson['url'] = data.slice(page,page+3);
-            //     page = page+3;
-            //     var sJson = JSON.stringify(aJson);
-            //     $.ajax({ 
-            //         url : App.serverUrl+"/image-url-to-base64", 
-            //         data : sJson, 
-            //         traditional: true ,
-            //         contentType:"application/json", 
-            //         type : 'POST', 
-            //         dataType:'JSON', 
-            //         beforeSend:function()
-            //         {
-            //             test = sJson;
-            //         },
-            //         success:function(imgs)
-            //         { 
-            //             console.log(test);
-            //             for(var i = 0; i<imgs.length;i++)
-            //             {
-            //                 $('#js-3').append("<img src='"+imgs[i]+"'/>");
-            //             }
-            //         }
-            //     });
-            // }
+            for(var i = 0; i<data.length; i++)
+            {
+                imageLoad(data[i],imgMap);
+            }
             console.log(data.length);
         }
     });
 });
+
+function imageLoad(imgData,map)
+{
+    var aJson = new Object();
+    aJson['url'] = imgData;
+    var sJson = JSON.stringify(aJson);
+    $.ajax({ 
+        url : App.serverUrl+"/get-url-data", 
+        data : sJson, 
+        traditional: true ,
+        type : 'POST', 
+        xhr: function() { // Seems like the only way to get access to the xhr object
+            var xhr = new XMLHttpRequest();
+            xhr.responseType = 'blob'
+            return xhr;
+        },
+        success:function(data)
+        {
+            var url = window.URL || window.webkitURL;
+            var img = url.createObjectURL(data);
+
+            var id = map.get(imgData);
+            $('#js-3 > #'+id).empty();
+            $('#js-3 > #'+id).append("<img src='"+img+"'/>");
+        }
+    });
+}
